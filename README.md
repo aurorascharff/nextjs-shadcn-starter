@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Starter
+
+A Next.js 16 starter with React 19, Prisma, Tailwind CSS, shadcn/ui, and modern patterns for building demos and applications.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Prisma Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Initialize the local SQLite database:
 
-## Learn More
+```bash
+npm run prisma.push
+```
 
-To learn more about Next.js, take a look at the following resources:
+Seed initial data:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run prisma.seed
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+View data in Prisma Studio:
 
-## Deploy on Vercel
+```bash
+npm run prisma.studio
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
+
+- `app` - Pages and layouts using file-based routing
+- `components` - Shared components
+- `data/actions` - Server actions for mutations
+- `data/services` - Server-side data queries with `cache()`
+- `_components` - Route-local components (prefixed with `_`)
+
+Every page folder should contain everything it needs to work. Every component or function should live at the nearest shared space in the hierarchy.
+
+## Development Tools
+
+The project uses [ESLint](https://eslint.org/) for linting and [Prettier](https://prettier.io/) for code formatting. The configuration is in `eslint.config.mjs` and `.prettierrc`. The project is configured to run code formatting and linting on save in Visual Studio Code. Opening the `.code-workspace` file will ensure the correct extensions are set.
+
+## Naming Conventions
+
+- Pascal case for components
+- Kebab case for folders
+- Camel case for other files
+
+## Data Fetching and Mutation
+
+Mutations are done using React Server Functions. Files are stored inside the `data` folder, where `data/services` are server-side data queries and `data/actions` are mutations. Take extra consideration when creating hidden endpoints with `"use server"` to avoid exposing sensitive data.
+
+## Deployment
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Deploy to [Vercel](https://vercel.com) for the easiest experience. Note: Use a production database instead of SQLite.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
