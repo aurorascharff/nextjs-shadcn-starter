@@ -62,7 +62,7 @@ const eslintConfig = [
       ],
       'no-console': 'warn',
       'no-redeclare': 'warn',
-      quotes: ['warn', 'single'],
+      quotes: ['warn', 'single', { avoidEscape: true }],
       'react/display-name': 'error',
       'react/jsx-key': 'warn',
       'react/react-in-jsx-scope': 'off',
