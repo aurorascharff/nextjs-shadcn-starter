@@ -1,14 +1,14 @@
-"use server";
+'use server';
 
 // Example server action - replace with your own
 // import { prisma } from '@/db';
 // import { revalidatePath } from 'next/cache';
 
 export async function createExample(formData: FormData) {
-  const name = formData.get("name") as string;
+  const name = formData.get('name') as string;
 
   if (!name) {
-    return { error: "Name is required" };
+    return { error: 'Name is required' };
   }
 
   // Example: Create a new record
@@ -22,7 +22,7 @@ export async function createExample(formData: FormData) {
   return { success: true };
 }
 
-export async function deleteExample(id: string) {
+export async function deleteExample() {
   // Example: Delete a record
   // await prisma.example.delete({
   //   where: { id },

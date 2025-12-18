@@ -1,6 +1,6 @@
-import "server-only";
+import 'server-only';
 
-import { cache } from "react";
+import { cache } from 'react';
 // import { prisma } from '@/db';
 
 // Example service function - replace with your own
@@ -13,7 +13,7 @@ export const getExamples = cache(async () => {
   return [];
 });
 
-export const getExampleById = cache(async (id: string) => {
+export const getExampleById = cache(async () => {
   // return await prisma.example.findUnique({
   //   where: { id },
   // });

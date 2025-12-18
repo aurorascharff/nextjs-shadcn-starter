@@ -1,68 +1,33 @@
-import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
-import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
+import nextConfig from 'eslint-config-next';
 import autofix from 'eslint-plugin-autofix';
 import reactCompiler from 'eslint-plugin-react-compiler';
-import reactHooks from 'eslint-plugin-react-hooks';
 import sortKeysFix from 'eslint-plugin-sort-keys-fix';
-import globals from 'globals';
-import tsParser from '@typescript-eslint/parser';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  allConfig: js.configs.all,
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-});
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 const eslintConfig = [
   {
     ignores: ['**/next-env.d.ts', '.next/**', 'node_modules/**', 'generated/**'],
   },
-  ...fixupConfigRules(
-    compat.extends(
-      'eslint:recommended',
-      'eslint-config-prettier',
-      'plugin:react/recommended',
-      'plugin:@typescript-eslint/recommended',
-      'plugin:import/recommended',
-      'plugin:jsx-a11y/recommended',
-      'next',
-      'next/core-web-vitals',
-      'next/typescript',
-      'prettier',
-    ),
-  ),
+  ...nextConfig,
+  eslintConfigPrettier,
   {
-    languageOptions: {
-      ecmaVersion: 12,
-      globals: {
-        ...globals.browser,
-      },
-      parser: tsParser,
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
-      sourceType: 'module',
-    },
     plugins: {
       autofix,
       'react-compiler': reactCompiler,
-      'react-hooks': fixupPluginRules(reactHooks),
       'sort-keys-fix': sortKeysFix,
     },
     rules: {
       'react-compiler/react-compiler': 'error',
       'sort-keys-fix/sort-keys-fix': 'warn',
     },
+    settings: {
+      'import/resolver': {
+        typescript: true,
+      },
+    },
   },
   {
-    files: ['**/*.ts?(x)'],
+    files: ['**/*.ts', '**/*.tsx'],
     rules: {
       '@typescript-eslint/consistent-type-imports': [
         'warn',

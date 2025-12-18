@@ -1,15 +1,15 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
   experimental: {
     staleTimes: {
       dynamic: 30,
       static: 180,
     },
   },
-  typedRoutes: true,
   reactCompiler: true,
-  cacheComponents: true,
+  typedRoutes: true,
 };
 
 export default nextConfig;
