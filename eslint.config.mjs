@@ -1,6 +1,5 @@
 import nextConfig from 'eslint-config-next';
 import autofix from 'eslint-plugin-autofix';
-import reactCompiler from 'eslint-plugin-react-compiler';
 import sortKeysFix from 'eslint-plugin-sort-keys-fix';
 import eslintConfigPrettier from 'eslint-config-prettier';
 
@@ -13,11 +12,9 @@ const eslintConfig = [
   {
     plugins: {
       autofix,
-      'react-compiler': reactCompiler,
       'sort-keys-fix': sortKeysFix,
     },
     rules: {
-      'react-compiler/react-compiler': 'error',
       'sort-keys-fix/sort-keys-fix': 'warn',
     },
     settings: {
