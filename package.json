@@ -51,6 +51,7 @@
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "globals": "^16.5.0",
     "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "prisma": "^7.2.0",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
