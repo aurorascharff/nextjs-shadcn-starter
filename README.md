@@ -47,6 +47,10 @@ Every page folder should contain everything it needs to work. Every component or
 
 The project uses [ESLint](https://eslint.org/) for linting and [Prettier](https://prettier.io/) for code formatting. The configuration is in `eslint.config.mjs` and `.prettierrc`. The project is configured to run code formatting and linting on save in Visual Studio Code. Opening the `.code-workspace` file will ensure the correct extensions are set.
 
+## shadcn/ui Components
+
+UI components are from [shadcn/ui](https://ui.shadcn.com/) in `components/ui/`. Add components with `bunx shadcn@latest add <component-name>`.
+
 ## Naming Conventions
 
 - Pascal case for components
