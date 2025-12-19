@@ -49,7 +49,7 @@ The project uses [ESLint](https://eslint.org/) for linting and [Prettier](https:
 
 ## shadcn/ui Components
 
-UI components are from [shadcn/ui](https://ui.shadcn.com/) in `components/ui/`. Add components with `bunx shadcn@latest add <component-name>`.
+UI components are from [shadcn/ui](https://ui.shadcn.com/) built on [Base UI](https://base-ui.com/) in `components/ui/`. Add components with `bunx shadcn@latest add <component-name>`.
 
 ## Naming Conventions
 
