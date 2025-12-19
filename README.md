@@ -54,8 +54,8 @@ UI components are from [shadcn/ui](https://ui.shadcn.com/) in `components/ui/`. 
 ## Naming Conventions
 
 - Pascal case for components
-- Kebab case for folders
-- Camel case for other files
+- Kebab case for folders and files
+- Camel case for utility functions and hooks
 
 ## Data Fetching and Mutation
 
