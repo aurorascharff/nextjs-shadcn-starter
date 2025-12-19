@@ -1,6 +1,6 @@
 # Next.js Starter
 
-A Next.js 16 starter with React 19, Prisma, Tailwind CSS, shadcn/ui, and modern patterns for building demos and applications.
+A [Next.js 16](https://nextjs.org/) starter with [React 19](https://react.dev/), [Prisma](https://www.prisma.io/), [Tailwind CSS](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/), and modern patterns for building demos and applications.
 
 ## Getting Started
 
@@ -35,10 +35,10 @@ npm run prisma.studio
 
 ## Project Structure
 
-- `app` - Pages and layouts using file-based routing
+- `app` - Pages and layouts using [file-based routing](https://nextjs.org/docs/app/building-your-application/routing)
 - `components` - Shared components
-- `data/actions` - Server actions for mutations
-- `data/services` - Server-side data queries with `cache()`
+- `data/actions` - [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) for mutations
+- `data/queries` - Server-side data queries with [`cache()`](https://react.dev/reference/react/cache)
 - `_components` - Route-local components (prefixed with `_`)
 
 Every page folder should contain everything it needs to work. Every component or function should live at the nearest shared space in the hierarchy.
@@ -59,7 +59,7 @@ UI components are from [shadcn/ui](https://ui.shadcn.com/) in `components/ui/`. 
 
 ## Data Fetching and Mutation
 
-Mutations are done using React Server Functions. Files are stored inside the `data` folder, where `data/services` are server-side data queries and `data/actions` are mutations. Take extra consideration when creating hidden endpoints with `"use server"` to avoid exposing sensitive data.
+Mutations are done using [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations). Files are stored inside the `data` folder, where `data/queries` are server-side data queries and `data/actions` are mutations. Take extra consideration when creating hidden endpoints with [`"use server"`](https://react.dev/reference/rsc/use-server) to avoid exposing sensitive data.
 
 ## Deployment
 
