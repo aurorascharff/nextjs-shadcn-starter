@@ -117,11 +117,9 @@ function CardExample() {
         </CardHeader>
         <CardFooter>
           <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button>
-                <PlusIcon data-icon="inline-start" />
-                Show Dialog
-              </Button>
+            <AlertDialogTrigger render={<Button />}>
+              <PlusIcon data-icon="inline-start" />
+              Show Dialog
             </AlertDialogTrigger>
             <AlertDialogContent size="sm">
               <AlertDialogHeader>
@@ -150,6 +148,13 @@ function CardExample() {
 
 const frameworks = ['Next.js', 'SvelteKit', 'Nuxt.js', 'Remix', 'Astro'] as const;
 
+const roleItems = [
+  { label: 'Developer', value: 'developer' },
+  { label: 'Designer', value: 'designer' },
+  { label: 'Manager', value: 'manager' },
+  { label: 'Other', value: 'other' },
+];
+
 function FormExample() {
   const [notifications, setNotifications] = React.useState({
     email: true,
@@ -166,11 +171,9 @@ function FormExample() {
           <CardDescription>Please fill in your details below</CardDescription>
           <CardAction>
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <MoreVerticalIcon />
-                  <span className="sr-only">More options</span>
-                </Button>
+              <DropdownMenuTrigger render={<Button variant="ghost" size="icon" />}>
+                <MoreVerticalIcon />
+                <span className="sr-only">More options</span>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuGroup>
@@ -409,16 +412,19 @@ function FormExample() {
                 </Field>
                 <Field>
                   <FieldLabel htmlFor="small-form-role">Role</FieldLabel>
-                  <Select defaultValue="">
+                  <Select items={roleItems} defaultValue={null}>
                     <SelectTrigger id="small-form-role">
-                      <SelectValue placeholder="Select a role" />
+                      <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectItem value="developer">Developer</SelectItem>
-                        <SelectItem value="designer">Designer</SelectItem>
-                        <SelectItem value="manager">Manager</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        {roleItems.map(item => {
+                          return (
+                            <SelectItem key={item.value} value={item.value}>
+                              {item.label}
+                            </SelectItem>
+                          );
+                        })}
                       </SelectGroup>
                     </SelectContent>
                   </Select>
