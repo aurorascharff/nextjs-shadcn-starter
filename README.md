@@ -1,6 +1,6 @@
 # Next.js Starter
 
-A [Next.js 16](https://nextjs.org/) starter with [React 19](https://react.dev/), [Prisma](https://www.prisma.io/), [Tailwind CSS](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/), and modern patterns for building demos and applications. Includes [Cache Components](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents) with [`"use cache"`](https://nextjs.org/docs/app/api-reference/directives/use-cache) for opt-in caching and Partial Pre-Rendering.
+A [Next.js 16](https://nextjs.org/) starter with [Prisma](https://www.prisma.io/), [Tailwind CSS](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/), and modern patterns for building demos and applications. Includes [Cache Components](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents) with [`"use cache"`](https://nextjs.org/docs/app/api-reference/directives/use-cache) for opt-in caching and Partial Pre-Rendering.
 
 ## Getting Started
 
