@@ -12,6 +12,12 @@ type Props = React.ComponentProps<'button'> &
     loading?: boolean;
   };
 
+/**
+ * A design component that wraps shadcn Button with built-in
+ * form status handling for submit buttons.
+ *
+ * Automatically shows a loading spinner when the form is pending.
+ */
 export function SubmitButton({ children, loading, disabled, ...props }: Props) {
   const { pending } = useFormStatus();
   const isSubmitting = loading || pending;

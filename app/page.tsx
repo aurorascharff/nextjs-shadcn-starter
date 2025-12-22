@@ -1,4 +1,4 @@
-import { ComponentExample } from '@/components/component-example';
+import { ComponentExample } from '@/components/ComponentExample';
 
 export default function Page() {
   return <ComponentExample />;
