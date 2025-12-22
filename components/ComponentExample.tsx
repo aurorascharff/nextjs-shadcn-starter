@@ -34,7 +34,7 @@ import {
 
 import * as React from 'react';
 
-import { Example, ExampleWrapper } from '@/components/Example';
+import { Showcase, ShowcaseWrapper } from '@/components/Showcase';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -90,16 +90,16 @@ import { Textarea } from '@/components/ui/textarea';
 
 export function ComponentExample() {
   return (
-    <ExampleWrapper>
+    <ShowcaseWrapper>
       <CardExample />
       <FormExample />
-    </ExampleWrapper>
+    </ShowcaseWrapper>
   );
 }
 
 function CardExample() {
   return (
-    <Example title="Card" className="items-center justify-center">
+    <Showcase title="Card" className="items-center justify-center">
       <Card className="relative w-full max-w-sm overflow-hidden pt-0">
         <div className="bg-primary absolute inset-0 z-30 aspect-video opacity-50 mix-blend-color" />
         <img
@@ -142,7 +142,7 @@ function CardExample() {
           </Badge>
         </CardFooter>
       </Card>
-    </Example>
+    </Showcase>
   );
 }
 
@@ -164,7 +164,7 @@ function FormExample() {
   const [theme, setTheme] = React.useState('light');
 
   return (
-    <Example title="Form">
+    <Showcase title="Form">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>User Information</CardTitle>
@@ -462,6 +462,6 @@ function FormExample() {
           </form>
         </CardContent>
       </Card>
-    </Example>
+    </Showcase>
   );
 }
