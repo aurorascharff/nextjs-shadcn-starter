@@ -23,8 +23,9 @@ Before you ever suggest anything, review `package.json` to see what packages are
 ## Server Components
 
 - All components are **Server Components by default** - only add `'use client'` when needed.
-- Wrap async Server Components in `<Suspense>` with skeleton fallbacks (export skeleton from same file).
-- Pass promises (not awaited data) to client components for streaming.
+- Push dynamic data access (`searchParams`, `cookies()`, `headers()`, uncached fetches) as deep as possible to maximize static content.
+- Wrap async Server Components accessing dynamic data in `<Suspense>` with skeleton fallbacks (export skeleton from same file).
+- Pass promises (not awaited data) to child components for streaming.
 - Add `"use cache"` to pages, components, or functions you want to pre-render or cache.
 - Invalidate cache with `revalidateTag()` or `updateTag()` after mutations.
 
