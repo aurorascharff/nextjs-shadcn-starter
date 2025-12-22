@@ -5,7 +5,7 @@ Before you ever suggest anything, review `package.json` to see what packages are
 
 ## Code Style
 
-- Pascal case for components, kebab case for folders and files, camel case for utility functions and hooks.
+- Pascal case for components and component file names, kebab case for folders and non-component files, camel case for utility functions and hooks.
 - Suffix functions that run in transitions with "Action" (e.g., `submitAction`, `deleteAction`).
 - Use `cn` util when merging conditional classes with other classes.
 - Use Base UI for custom interactive UI components not in shadcn/ui.
