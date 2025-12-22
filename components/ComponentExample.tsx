@@ -34,6 +34,7 @@ import {
 
 import * as React from 'react';
 
+import { useState } from 'react';
 import { Showcase } from '@/components/Showcase';
 import { TabList } from '@/components/design/TabList';
 import {
@@ -163,13 +164,13 @@ const formTabs = [
 ];
 
 function FormExample() {
-  const [activeTab, setActiveTab] = React.useState('user-info');
-  const [notifications, setNotifications] = React.useState({
+  const [activeTab, setActiveTab] = useState('user-info');
+  const [notifications, setNotifications] = useState({
     email: true,
     push: true,
     sms: false,
   });
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = useState('light');
 
   async function handleTabChangeAction(value: string) {
     await new Promise(resolve => {
