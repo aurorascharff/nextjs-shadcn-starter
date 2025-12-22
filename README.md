@@ -68,7 +68,6 @@ This project uses [`cacheComponents: true`](https://nextjs.org/docs/app/api-refe
 **Fetching data** → Create queries in `data/queries/` and call them directly in async Server Components. Wrap with `cache()` for deduplication.
 **Mutating data** → Create Server Actions in `data/actions/` with `"use server"`. Invalidate with `updateTag()` or `revalidateTag()`. Use `useTransition` or `useFormStatus` for pending states, `useOptimistic` for instant feedback.
 **Navigation and filtering** → Wrap state changes in `useTransition` to keep old content visible while new data loads.
-
 **Opting into caching** → Add [`"use cache"`](https://nextjs.org/docs/app/api-reference/directives/use-cache) to pages, components, or functions you want to pre-render or cache.
 
 ## Deployment
