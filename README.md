@@ -44,7 +44,7 @@ npm run prisma.studio
 - `app` - Pages and layouts using [file-based routing](https://nextjs.org/docs/app/building-your-application/routing)
 - `components` - Shared components
 - `components/ui` - [shadcn/ui](https://ui.shadcn.com/) components built on [Base UI](https://base-ui.com/). Add with `bunx shadcn@latest add <component-name>`
-- `components/design` - Design components that expose Action props and handle async coordination internally
+- `components/design` - Design components that expose [Action props](https://react.dev/reference/react/useTransition#exposing-action-props-from-components) and handle async coordination internally
 - `data/actions` - [Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) for mutations
 - `data/queries` - Server-side data queries with [`cache()`](https://react.dev/reference/react/cache)
 - `_components` - Route-local components (prefixed with `_`)
