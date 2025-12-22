@@ -31,7 +31,8 @@ Every page folder should contain everything it needs to work. Every component or
 
 - All components are **Server Components by default** - only add `'use client'` when needed for interactivity, hooks, or browser APIs.
 - Server Components can be `async` and fetch data directly with `await`.
-- Use `use()` hook to unwrap promises in client components - always wrap in `<Suspense>`.
+- Wrap async Server Components and components using `use()` in `<Suspense>` with appropriate fallbacks for good UX.
+- Use `use()` hook to unwrap promises in client components.
 - Pass promises (not awaited data) from server to client components for streaming.
 - Data fetching goes in `data/queries/` wrapped with `cache()` for deduplication.
 - Mutations go in `data/actions/` with `'use server'` directive.
