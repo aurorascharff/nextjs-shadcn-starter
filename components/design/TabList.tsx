@@ -1,9 +1,9 @@
 'use client';
 
+import { Loader2 } from 'lucide-react';
 import { useOptimistic, useTransition } from 'react';
 
 import { Tabs, TabsList as BaseTabsList, TabsTrigger, tabsListVariants } from '@/components/ui/tabs';
-import { cn } from '@/lib/utils';
 
 type Tab = {
   label: string;
@@ -13,7 +13,8 @@ type Tab = {
 type TabListProps = {
   tabs: Tab[];
   activeTab: string;
-  changeAction: (_value: string) => void | Promise<void>;
+  changeAction?: (value: string) => void | Promise<void>;
+  onChange?: (value: string) => void;
   className?: string;
   children?: React.ReactNode;
 };
@@ -24,21 +25,23 @@ type TabListProps = {
  *
  * The `changeAction` prop signals that the function will run
  * inside a transition, enabling optimistic updates.
+ * The `onChange` prop is a regular callback for immediate side effects.
  */
-export function TabList({ tabs, activeTab, changeAction, className, children }: TabListProps) {
+export function TabList({ tabs, activeTab, changeAction, onChange, className, children }: TabListProps) {
   const [optimisticTab, setOptimisticTab] = useOptimistic(activeTab);
   const [isPending, startTransition] = useTransition();
 
-  function handleTabChange(value: string) {
+  function tabChangeAction(value: string) {
+    onChange?.(value);
     startTransition(async () => {
       setOptimisticTab(value);
-      await changeAction(value);
+      await changeAction?.(value);
     });
   }
 
   return (
-    <div className={cn(isPending && 'opacity-70 transition-opacity', className)}>
-      <Tabs value={optimisticTab}>
+    <Tabs value={optimisticTab} className={className}>
+      <div className="flex items-center gap-3">
         <BaseTabsList>
           {tabs.map(tab => {
             return (
@@ -46,7 +49,7 @@ export function TabList({ tabs, activeTab, changeAction, className, children }: 
                 key={tab.value}
                 value={tab.value}
                 onClick={() => {
-                  handleTabChange(tab.value);
+                  tabChangeAction(tab.value);
                 }}
               >
                 {tab.label}
@@ -54,9 +57,10 @@ export function TabList({ tabs, activeTab, changeAction, className, children }: 
             );
           })}
         </BaseTabsList>
-        {children}
-      </Tabs>
-    </div>
+        {isPending && <Loader2 className="text-muted-foreground size-4 animate-spin" />}
+      </div>
+      {children}
+    </Tabs>
   );
 }
 
