@@ -15,13 +15,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ## Prisma Setup
 
+This project uses SQLite with a local database file (`dev.db`). No environment configuration needed for local development.
+
 Generate the Prisma client:
 
 ```bash
 bun run prisma.generate
 ```
 
-Initialize the local SQLite database:
+Push the schema:
 
 ```bash
 bun run prisma.push
@@ -38,6 +40,14 @@ View data in Prisma Studio:
 ```bash
 bun run prisma.studio
 ```
+
+To use [Prisma Postgres](https://www.prisma.io/postgres) instead, change the provider in `prisma/schema.prisma` to `postgresql`, set your connection string in `.env`:
+
+```env
+DATABASE_URL="postgres://..."
+```
+
+And update `db.ts` to use `@prisma/adapter-pg`.
 
 ## Project Structure
 
