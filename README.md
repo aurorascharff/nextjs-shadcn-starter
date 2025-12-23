@@ -18,25 +18,25 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 Generate the Prisma client:
 
 ```bash
-npm run prisma.generate
+bun run prisma.generate
 ```
 
 Initialize the local SQLite database:
 
 ```bash
-npm run prisma.push
+bun run prisma.push
 ```
 
 Seed initial data:
 
 ```bash
-npm run prisma.seed
+bun run prisma.seed
 ```
 
 View data in Prisma Studio:
 
 ```bash
-npm run prisma.studio
+bun run prisma.studio
 ```
 
 ## Project Structure
@@ -75,7 +75,7 @@ This project uses [`cacheComponents: true`](https://nextjs.org/docs/app/api-refe
 Build for production:
 
 ```bash
-npm run build
+bun run build
 ```
 
 Deploy to [Vercel](https://vercel.com) for the easiest experience. Note: Use a production database instead of SQLite.
