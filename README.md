@@ -1,6 +1,6 @@
 # Next.js Starter
 
-A [Next.js 16](https://nextjs.org/) starter with [Prisma](https://www.prisma.io/), [Tailwind CSS](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/) (built on [Base UI](https://base-ui.com/)).
+A [Next.js 16](https://nextjs.org/) starter with [Prisma](https://www.prisma.io/), [Tailwind CSS](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/) (built on [Base UI](https://base-ui.com/)), with modern patterns for building demos and applications.
 
 Features opt-in caching with [`"use cache"`](https://nextjs.org/docs/app/api-reference/directives/use-cache) and Partial Pre-Rendering via [`cacheComponents`](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents).
 
@@ -43,22 +43,25 @@ data/
   queries/                # Data fetching with cache()
 ```
 
+- **components/ui** — [shadcn/ui](https://ui.shadcn.com/) components. Add with `bunx shadcn@latest add <component-name>`
+- **components/design** — Components that expose [Action props](https://react.dev/reference/react/useTransition#exposing-action-props-from-components) and handle async coordination internally
+
 Every page folder should contain everything it needs. Components and functions live at the nearest shared space in the hierarchy.
 
 **Naming:** PascalCase for components, kebab-case for files/folders, camelCase for functions/hooks.
 
 ## Development Flow
 
-With `cacheComponents: true`, data fetching is **dynamic by default**. Push dynamic data access (`searchParams`, `cookies()`, `headers()`) as deep as possible in the component tree to maximize static content. Async components accessing dynamic data must be wrapped in `<Suspense>` with skeleton fallbacks.
+This project uses [`cacheComponents: true`](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents) — data fetching is **dynamic by default**. Push dynamic data access (`searchParams`, `cookies()`, `headers()`, uncached fetches) as deep as possible in the component tree to maximize static content. Async components accessing dynamic data must be wrapped in `<Suspense>` with skeleton fallbacks.
 
 - **Fetching data** — Create queries in `data/queries/`, call in Server Components. Wrap with `cache()` for deduplication.
-- **Mutating data** — Create Server Actions in `data/actions/` with `"use server"`. Invalidate with `revalidateTag()`. Use `useTransition` or `useFormStatus` for pending states.
+- **Mutating data** — Create Server Actions in `data/actions/` with `"use server"`. Invalidate with `updateTag()` or `revalidateTag()`. Use `useTransition` or `useFormStatus` for pending states, `useOptimistic` for instant feedback.
 - **Navigation** — Wrap state changes in `useTransition` to keep old content visible while loading.
-- **Caching** — Add `"use cache"` to pages, components, or functions you want to pre-render.
+- **Caching** — Add [`"use cache"`](https://nextjs.org/docs/app/api-reference/directives/use-cache) to pages, components, or functions you want to pre-render or cache.
 
 ## Development Tools
 
-Uses [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) with format-on-save in VS Code. Open the `.code-workspace` file to ensure correct extensions are set.
+Uses [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) with format-on-save in VS Code. Configuration in `eslint.config.mjs` and `.prettierrc`. Open the `.code-workspace` file to ensure correct extensions are set.
 
 ## Deployment
 
