@@ -2,7 +2,6 @@
 
 import { AlertCircle, RefreshCw } from 'lucide-react';
 import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary';
-import { useTrackError } from '@/hooks/useTrackError';
 import { cn } from '@/lib/utils';
 
 type Props = {
@@ -22,8 +21,6 @@ function ErrorFallback({
   error: Error;
   resetErrorBoundary: () => void;
 }) {
-  useTrackError(error);
-
   return (
     <div
       className={cn(
