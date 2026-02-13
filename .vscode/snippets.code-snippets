@@ -1,5 +1,5 @@
 {
-  "React Server Component": {
+  "rsc": {
     "prefix": "rsc",
     "body": [
       "export default async function ${1:Component}() {",
@@ -11,7 +11,7 @@
       "}"
     ]
   },
-  "React Client Component": {
+  "rcc": {
     "prefix": "rcc",
     "body": [
       "'use client';",
@@ -25,7 +25,7 @@
       "}"
     ]
   },
-  "Server Action": {
+  "sa": {
     "prefix": "sa",
     "body": [
       "'use server';",
