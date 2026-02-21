@@ -111,7 +111,7 @@ On the server side, use `createSearchParamsCache` to parse the `searchParams` pr
 
 ## Pending UI with `data-pending`
 
-When a component triggers a server re-render (e.g. changing filters via nuqs), use `useTransition` to get `isPending`. Set `data-pending={isPending ? '' : undefined}` on a root element of that component. Ancestors or siblings can target this with Tailwind variants like `has-data-pending:animate-pulse` or `group-has-data-pending:animate-pulse`.
+When a component triggers a server re-render (e.g. changing filters), use `useTransition` to get `isPending`. Set `data-pending={isPending ? '' : undefined}` on a root element of that component. Ancestors or siblings can target this with Tailwind variants like `has-data-pending:animate-pulse` or `group-has-data-pending:animate-pulse`.
 
 ## Server Components (Default)
 
@@ -159,6 +159,6 @@ npm run prisma.generate  # Generate Prisma client
 - `db.ts` — Prisma client instance
 - `prisma/schema.prisma` — Database schema
 - `lib/utils.ts` — Utility functions including `cn()`
-- `lib/searchParams.ts` — nuqs search param parsers and cache
 - `next.config.ts` — `typedRoutes`, `cacheComponents`, `reactCompiler`
 - `components.json` — shadcn/ui configuration
+- `lib/utils.ts` — Utility functions including `cn()`
