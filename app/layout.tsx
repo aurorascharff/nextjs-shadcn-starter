@@ -2,7 +2,6 @@ import './globals.css';
 
 import { Github } from 'lucide-react';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { ThemeProvider } from '@/components/ThemeProvider';
