@@ -22,11 +22,7 @@ export const metadata: Metadata = {
   title: 'Next.js Starter',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={geistSans.variable} suppressHydrationWarning>
       <NuqsAdapter>
