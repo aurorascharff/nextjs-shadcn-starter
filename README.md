@@ -2,7 +2,7 @@
 
 A [Next.js 16](https://nextjs.org/) starter with [Prisma](https://www.prisma.io/), [Tailwind CSS](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/) (built on [Base UI](https://base-ui.com/)), with modern patterns for building demos and applications.
 
-Uses [`cacheComponents`](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents) for static shell rendering and modern [Async React](https://async-react.dev/) patterns for declarative async coordination.
+Uses [`cacheComponents`](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents) for best practices and performance, and modern [Async React](https://async-react.dev/) patterns for declarative async coordination.
 
 ## Getting Started
 
