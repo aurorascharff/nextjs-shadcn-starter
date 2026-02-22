@@ -46,7 +46,7 @@ lib/
 ```
 
 - **components/ui** — [shadcn/ui](https://ui.shadcn.com/) components. Add with `bunx shadcn@latest add <component-name>`
-- **components/design** — Components that expose [Action props](https://react.dev/reference/react/useTransition#exposing-action-props-from-components) and handle optimistic state and transitions internally
+- **components/design** — Components that expose [Action props](https://react.dev/reference/react/useTransition#exposing-action-props-from-components) and handle async coordination internally
 
 Every page folder should contain everything it needs. Components and functions live at the nearest shared space in the hierarchy.
 
@@ -54,19 +54,17 @@ Every page folder should contain everything it needs. Components and functions l
 
 ## Development Flow
 
-- **Fetching data** — Queries in `data/queries/`, wrapped with `cache()`. Pass promises to client components and unwrap with `use()`. Client components use SWR for interactive fetches.
-- **Mutating data** — Server Actions in `data/actions/` with `"use server"`. Invalidate with `revalidateTag()` or `revalidatePath()`. Use `useTransition` + `useOptimistic` for pending state and instant feedback.
-- **Navigation** — Wrap `router.push()` / param updates in `startTransition` to keep the current page visible while the new route loads.
-- **Caching** — Add [`"use cache"`](https://nextjs.org/docs/app/api-reference/directives/use-cache) with `cacheLife()` to pages, components, or functions to include them in the static shell.
-- **Errors** — `error.tsx` for boundaries, `not-found.tsx` + `notFound()` for 404s, `unauthorized.tsx` + `unauthorized()` for auth. Errors thrown inside transitions automatically reach the nearest error boundary.
+- **Fetching data** — Queries in `data/queries/`, wrapped with `cache()`. Await in Server Components directly, or pass the promise to a client component and unwrap with `use()`. Use SWR with `lib/fetcher.ts` for dependent or interactive client-side fetches (e.g. cascading filter options).
+- **Mutating data** — Server Actions in `data/actions/` with `"use server"`. Invalidate with `revalidateTag()`. Use `useTransition` + `useOptimistic` for pending state and instant feedback.
+- **Navigation** — Wrap route changes in `useTransition` to get `isPending` for loading UI.
+- **Caching** — Add `"use cache"` with `cacheLife()` to pages, components, or functions to include them in the static shell.
+- **Errors** — `error.tsx` for boundaries, `not-found.tsx` + `notFound()` for 404s. Errors thrown inside transitions automatically reach the nearest error boundary.
 
 ## Key Patterns
 
-**Cache Components & static shell:** With `cacheComponents: true`, Next.js pre-renders a static HTML shell and streams dynamic content in via `<Suspense>`. Keep pages non-async and push dynamic data access (`searchParams`, `cookies()`, `headers()`) into Suspense boundaries as deep as possible.
+**Cache Components & static shell:** Uses [`cacheComponents: true`](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents) for static shell rendering and [`"use cache"`](https://nextjs.org/docs/app/api-reference/directives/use-cache) for explicit caching. Keep pages non-async — push dynamic data access into Suspense boundaries as deep as possible.
 
-**Async React:** Replace manual `isLoading`/`isError` state with React 19's coordination primitives — `useTransition` for tracking async work, `useOptimistic` for instant feedback, `Suspense` for loading boundaries, and `use()` for reading promises during render.
-
-Other conventions: suffix transition functions with "Action" (`submitAction`, `changeAction`); design components in `components/design/` handle transitions and optimistic updates internally; co-locate skeleton fallbacks with their component. See `AGENTS.md` for detailed patterns and examples.
+**Async React:** Replace manual `isLoading`/`isError` state with React 19's coordination primitives — `useTransition` for tracking async work, `useOptimistic` for instant feedback, `Suspense` for loading boundaries, and `use()` for reading promises during render. See `AGENTS.md` for detailed patterns and examples.
 
 ## Development Tools
 
