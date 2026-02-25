@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  description: 'A Next.js 16 starter with React 19, Prisma, Tailwind CSS, and shadcn/ui',
-  title: 'Next.js Starter',
+  description: 'A demo toolkit built with Next.js 16, React 19, Prisma, Tailwind CSS, and shadcn/ui',
+  title: 'Next.js Demo Kit',
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
               className="fixed bottom-4 left-4 z-60 flex items-center gap-2"
             >
               <Link
-                href="https://github.com/aurorascharff/nextjs-shadcn-starter"
+                href="https://github.com/aurorascharff/nextjs-demo-kit"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"

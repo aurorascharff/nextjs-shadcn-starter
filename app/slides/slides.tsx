@@ -130,7 +130,7 @@ async function greet(user: string) {
       <SlideLink href="/" exit>
         Exit Slides →
       </SlideLink>
-      <SlideLink href="https://github.com/aurorascharff/nextjs-shadcn-starter" variant="ghost">
+      <SlideLink href="https://github.com/aurorascharff/nextjs-demo-kit" variant="ghost">
         GitHub
       </SlideLink>
     </div>
