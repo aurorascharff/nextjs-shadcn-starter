@@ -35,6 +35,7 @@ DATABASE_URL="postgres://..."
 ```plaintext
 app/                      # Pages and layouts
   _components/            # Route-local components
+  slides/                 # Slide deck system (see below)
 components/
   design/                 # Design system components with Action props
   ui/                     # shadcn/ui primitives
@@ -47,10 +48,13 @@ lib/
 
 - **components/ui** — [shadcn/ui](https://ui.shadcn.com/) components. Add with `bunx shadcn@latest add <component-name>`
 - **components/design** — Components that expose [Action props](https://react.dev/reference/react/useTransition#exposing-action-props-from-components) and handle async coordination internally
-
 Every page folder should contain everything it needs. Components and functions live at the nearest shared space in the hierarchy.
 
 **Naming:** PascalCase for components, kebab-case for files/folders, camelCase for functions/hooks. Suffix transition-based functions with "Action".
+
+## Slide Deck
+
+A composable presentation system at `/slides`. Each slide is a URL with keyboard, click, and dot navigation. Add slides by composing primitives (`Slide`, `SlideTitle`, `SlideCode`, etc.) in `app/slides/slides.tsx`. See `AGENTS.md` for details.
 
 ## Development Flow
 

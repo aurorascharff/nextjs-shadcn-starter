@@ -19,7 +19,7 @@ npm run prisma.generate  # generate Prisma client
 
 ## Stack
 
-Next.js 16 App Router · React 19 · TypeScript strict · Tailwind CSS 4 · shadcn/ui · Base UI · Prisma · nuqs · SWR · Zod · Sonner · next-themes
+Next.js 16 App Router · React 19 · TypeScript strict · Tailwind CSS 4 · shadcn/ui · Base UI · Prisma · nuqs · SWR · Zod · Sonner · next-themes · sugar-high
 
 ## Next.js 16 APIs (not in training data)
 
@@ -45,6 +45,12 @@ app/                    # File-based routing
   [slug]/
   dashboard/
     _components/        # Route-local components
+  slides/               # Slide deck system
+    _components/        # Slide primitives (primitives.tsx, SlideLink.tsx)
+    [page]/page.tsx     # Dynamic route per slide
+    layout.tsx          # Client layout — navigation, ViewTransition
+    slides.tsx          # Slide registry
+    page.tsx            # Redirects /slides → /slides/1
 components/
   ui/                   # shadcn/ui primitives (add: npx shadcn@latest add <name>)
   design/               # Design system — Action props pattern (see below)
@@ -196,6 +202,43 @@ Wraps the browser View Transition API; activates on React transition updates. Us
   {items.map(item => <ViewTransition key={item.id}><Item /></ViewTransition>)}
 </ViewTransition>
 ```
+
+Use `exit`/`enter` class props with CSS `::view-transition-old`/`::view-transition-new` selectors for custom animations. Use `addTransitionType()` inside `startTransition` for directional or contextual transitions:
+
+```tsx
+startTransition(() => {
+  addTransitionType(index > current ? 'slide-forward' : 'slide-back');
+  router.push(nextUrl);
+});
+```
+
+```tsx
+<ViewTransition
+  enter={{ default: 'slide-from-right', 'slide-back': 'slide-from-left' }}
+  exit={{ default: 'slide-to-left', 'slide-back': 'slide-to-right' }}
+>
+  <div>{children}</div>
+</ViewTransition>
+```
+
+## Slide Deck System
+
+A composable presentation system using URL-based routing, ViewTransitions, and sugar-high syntax highlighting.
+
+**Architecture:** Each slide maps to a URL (`/slides/1`, `/slides/2`, …). The layout handles navigation (keyboard, click, progress dots) and ViewTransition animations. Slides are composed from server component primitives.
+
+**Key files:**
+
+- `app/slides/slides.tsx` — Slide registry. Add/remove/reorder slides here.
+- `app/slides/layout.tsx` — Client layout with navigation logic and ViewTransition wrappers.
+- `app/slides/_components/primitives.tsx` — All server-side slide primitives.
+- `app/slides/_components/SlideLink.tsx` — Client component for links. `exit` prop triggers the deck exit ViewTransition.
+
+**Adding a slide:** Add a `<Slide>` element to the `slides` array in `app/slides/slides.tsx`. Compose with any combination of the primitives above. The layout and routing handle everything else automatically.
+
+**Animations:** Slide-to-slide transitions use directional sliding via `addTransitionType('slide-forward' | 'slide-back')`. The deck exit (via `SlideLink` with `exit`) uses a scale+fade unveil. All animation CSS is in `globals.css` using `::view-transition-old`/`::view-transition-new` selectors.
+
+**Code theme:** sugar-high uses `--sh-*` CSS variables defined in `globals.css` (light and dark variants). Code block colors use Tailwind theme tokens: `bg-code-bg`, `border-code-border`, `text-code-text`.
 
 ## Error Handling
 
