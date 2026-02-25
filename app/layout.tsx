@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { GeistPixelSquare } from 'geist/font/pixel';
 import { Github } from 'lucide-react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={geistSans.variable} suppressHydrationWarning>
       <NuqsAdapter>
-        <body className={`${geistMono.variable} antialiased`}>
+        <body className={`${geistMono.variable} ${GeistPixelSquare.variable} antialiased`}>
           <ThemeProvider>
             <main>{children}</main>
             <div className="fixed bottom-4 left-4 z-[60] flex items-center gap-2">

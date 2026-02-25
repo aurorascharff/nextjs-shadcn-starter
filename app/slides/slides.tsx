@@ -16,7 +16,7 @@ import { SlideLink } from '@/components/slides/SlideLink';
 export const slides: React.ReactNode[] = [
   <Slide key="welcome">
     <SlideBadge>Slide Deck</SlideBadge>
-    <SlideTitle>Code Your Slides</SlideTitle>
+    <SlideTitle className="font-pixel">Code Your Slides</SlideTitle>
     <SlideSubtitle>A composable slide system built with React, ViewTransitions, and Geist</SlideSubtitle>
     <SlideNote>Press → or Space to continue · ← to go back · Click anywhere</SlideNote>
   </Slide>,
@@ -130,6 +130,9 @@ async function greet(user: string) {
     <SlideSubtitle>
       Slides follow your app theme — toggle light/dark anytime. Use SlideLink to connect slides to your app.
     </SlideSubtitle>
+    <SlideSubtitle className="font-pixel text-base">
+      Geist Pixel is also available — use font-pixel for display moments.
+    </SlideSubtitle>
     <SlideCode title="End slide with a link back">{`<Slide>
   <SlideTitle>Thank You</SlideTitle>
   <SlideLink href="/">Back to Demo →</SlideLink>
@@ -137,7 +140,7 @@ async function greet(user: string) {
   </Slide>,
 
   <Slide key="end">
-    <SlideTitle>Now go build something.</SlideTitle>
+    <SlideTitle className="font-pixel">Now go build something.</SlideTitle>
     <SlideSubtitle>Navigate back to the demo or start creating your own slides.</SlideSubtitle>
     <div className="mt-4 flex items-center gap-4">
       <SlideLink href="/" exit>

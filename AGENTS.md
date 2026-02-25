@@ -3,18 +3,18 @@
 ## Commands
 
 ```bash
-npm install
-npm run dev          # http://localhost:3000
-npm run build        # run before committing
-npm run lint         # run before committing
+bun install
+bun run dev          # http://localhost:3000
+bun run build        # run before committing
+bun run lint         # run before committing
 ```
 
 ```bash
-npm run prisma.push      # push schema to DB
-npm run prisma.seed      # seed database
-npm run prisma.studio    # open Prisma Studio
-npm run prisma.migrate   # run migrations
-npm run prisma.generate  # generate Prisma client
+bun run prisma.push      # push schema to DB
+bun run prisma.seed      # seed database
+bun run prisma.studio    # open Prisma Studio
+bun run prisma.migrate   # run migrations
+bun run prisma.generate  # generate Prisma client
 ```
 
 ## Stack
@@ -52,7 +52,7 @@ app/                    # File-based routing
     slides.tsx          # Slide registry
     page.tsx            # Redirects /slides → /slides/1
 components/
-  ui/                   # shadcn/ui primitives (add: npx shadcn@latest add <name>)
+  ui/                   # shadcn/ui primitives (add: bunx shadcn@latest add <name>)
   design/               # Design system — Action props pattern (see below)
 data/
   queries/              # Server-side data fetching, wrapped with cache()
