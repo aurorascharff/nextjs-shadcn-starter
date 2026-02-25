@@ -106,7 +106,7 @@ export default function SlidesLayout({ children }: SlidesLayoutProps) {
         role="presentation"
       >
         <ViewTransition
-          key={`slide-${current}`}
+          key={pathname}
           enter={{
             default: 'slide-from-right',
             'slide-back': 'slide-from-left',

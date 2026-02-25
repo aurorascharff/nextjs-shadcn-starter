@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useTransition } from 'react';
+import { addTransitionType, useTransition } from 'react';
 import { cn } from '@/lib/utils';
 
 type SlideLinkProps = {
@@ -11,16 +11,20 @@ type SlideLinkProps = {
   className?: string;
   variant?: 'primary' | 'ghost';
   exit?: boolean;
+  back?: boolean;
 };
 
-export function SlideLink({ href, children, className, variant = 'primary', exit = false }: SlideLinkProps) {
+export function SlideLink({ href, children, className, variant = 'primary', exit = false, back = false }: SlideLinkProps) {
   const router = useRouter();
   const [, startTransition] = useTransition();
 
-  function handleExitClick(e: React.MouseEvent) {
+  function handleClick(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
     startTransition(() => {
+      if (back) {
+        addTransitionType('slide-back');
+      }
       router.push(href as never);
     });
   }
@@ -28,7 +32,7 @@ export function SlideLink({ href, children, className, variant = 'primary', exit
   return (
     <Link
       href={href as never}
-      onClick={exit ? handleExitClick : undefined}
+      onClick={exit || back ? handleClick : undefined}
       className={cn(
         'mt-2 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium tracking-wide transition-opacity hover:opacity-80',
         variant === 'primary' && 'bg-foreground text-background',

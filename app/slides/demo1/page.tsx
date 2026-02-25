@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { SlideLink } from '../_components/SlideLink';
 
 export default function Demo1Page() {
   return (
@@ -7,12 +7,9 @@ export default function Demo1Page() {
       <p className="text-muted-foreground max-w-md text-center text-lg">
         This is a regular page at /slides/demo1. It lives inside the slides layout but has its own UI — no deck chrome.
       </p>
-      <Link
-        href="/slides/5"
-        className="bg-foreground text-background mt-2 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium tracking-wide transition-opacity hover:opacity-80"
-      >
+      <SlideLink href="/slides/5" back>
         ← Back to slides
-      </Link>
+      </SlideLink>
     </div>
   );
 }
