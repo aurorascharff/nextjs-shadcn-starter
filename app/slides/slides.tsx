@@ -58,6 +58,18 @@ export default async function SlidePage({ params }) {
     <SlideNote>Wrap interactive content in SlideDemo — clicks and keys won&apos;t navigate</SlideNote>
   </Slide>,
 
+  <Slide key="routing">
+    <SlideBadge>Routing</SlideBadge>
+    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Breakout Routes</SlideTitle>
+    <SlideSubtitle>Navigate to a full page inside /slides — deck chrome hides automatically</SlideSubtitle>
+    <SlideCode title="Link to a sub-route and back">{`// In slides.tsx — link out
+<SlideLink href="/slides/demo1">Open Demo →</SlideLink>
+
+// In /slides/demo1/page.tsx — link back
+<SlideLink href="/slides/5">← Back to slides</SlideLink>`}</SlideCode>
+    <SlideLink href="/slides/demo1">Open Demo →</SlideLink>
+  </Slide>,
+
   <Slide key="navigation" align="left">
     <SlideBadge>Navigation</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">How to Navigate</SlideTitle>

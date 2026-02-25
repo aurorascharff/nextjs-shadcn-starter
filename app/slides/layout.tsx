@@ -16,6 +16,8 @@ export default function SlidesLayout({ children }: SlidesLayoutProps) {
 
   const total = slides.length;
 
+  const isSlideRoute = /\/slides\/\d+$/.test(pathname);
+
   const current = (() => {
     const match = pathname.match(/\/slides\/(\d+)/);
     return match ? Number(match[1]) - 1 : 0;
@@ -39,6 +41,7 @@ export default function SlidesLayout({ children }: SlidesLayoutProps) {
   }
 
   useEffect(() => {
+    if (!isSlideRoute) return;
     function onKeyDown(e: KeyboardEvent) {
       const target = e.target as HTMLElement;
       if (
@@ -74,6 +77,7 @@ export default function SlidesLayout({ children }: SlidesLayoutProps) {
   }, []);
 
   function handleClick(e: React.MouseEvent) {
+    if (!isSlideRoute) return;
     if (
       (e.target as HTMLElement).closest(
         'a, button, input, select, textarea, label, [data-slide-interactive], [contenteditable]',
@@ -94,7 +98,8 @@ export default function SlidesLayout({ children }: SlidesLayoutProps) {
       <div
         id="slide-deck"
         className={cn(
-          'bg-background text-foreground fixed inset-0 z-50 cursor-pointer overflow-hidden font-sans select-none',
+          'bg-background text-foreground fixed inset-0 z-50 overflow-hidden font-sans select-none',
+          isSlideRoute && 'cursor-pointer',
         )}
         data-pending={isPending ? '' : undefined}
         onClick={handleClick}
@@ -116,34 +121,39 @@ export default function SlidesLayout({ children }: SlidesLayoutProps) {
           <div>{children}</div>
         </ViewTransition>
 
-        <nav
-          className="fixed bottom-8 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2"
-          aria-label="Slide navigation"
-        >
-          {Array.from({ length: total }).map((_, i) => {
-            return (
-              <button
-                key={i}
-                onClick={e => {
-                  e.stopPropagation();
-                  goTo(i);
-                }}
-                className={cn(
-                  'h-1.5 rounded-full transition-all duration-300',
-                  i === current ? 'bg-foreground w-6' : 'bg-foreground/25 hover:bg-foreground/50 w-1.5',
-                )}
-                aria-label={`Go to slide ${i + 1}`}
-                aria-current={i === current ? 'step' : undefined}
-              />
-            );
-          })}
-        </nav>
+        {isSlideRoute && (
+          <nav
+            className="fixed bottom-8 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2"
+            aria-label="Slide navigation"
+          >
+            {Array.from({ length: total }).map((_, i) => {
+              return (
+                <button
+                  key={i}
+                  onClick={e => {
+                    e.stopPropagation();
+                    goTo(i);
+                  }}
+                  className={cn(
+                    'h-1.5 rounded-full transition-all duration-300',
+                    i === current ? 'bg-foreground w-6' : 'bg-foreground/25 hover:bg-foreground/50 w-1.5',
+                  )}
+                  aria-label={`Go to slide ${i + 1}`}
+                  aria-current={i === current ? 'step' : undefined}
+                />
+              );
+            })}
+          </nav>
+        )}
 
-        <div className="text-muted-foreground/50 fixed right-8 bottom-8 z-50 font-mono text-xs">
-          {current + 1} / {total}
-        </div>
-
-        <div className="text-muted-foreground/30 fixed bottom-8 left-8 z-50 font-mono text-[10px]">← → space</div>
+        {isSlideRoute && (
+          <>
+            <div className="text-muted-foreground/50 fixed right-8 bottom-8 z-50 font-mono text-xs">
+              {current + 1} / {total}
+            </div>
+            <div className="text-muted-foreground/30 fixed bottom-8 left-8 z-50 font-mono text-[10px]">← → space</div>
+          </>
+        )}
       </div>
     </ViewTransition>
   );
