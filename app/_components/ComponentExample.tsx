@@ -34,7 +34,6 @@ import {
 
 import * as React from 'react';
 
-import { Showcase, ShowcaseWrapper } from '@/components/Showcase';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -87,6 +86,7 @@ import { Field, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { ShowcaseWrapper, Showcase } from './Showcase';
 
 export function ComponentExample() {
   return (
