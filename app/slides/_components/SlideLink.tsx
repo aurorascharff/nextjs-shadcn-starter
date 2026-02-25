@@ -14,7 +14,14 @@ type SlideLinkProps = {
   back?: boolean;
 };
 
-export function SlideLink({ href, children, className, variant = 'primary', exit = false, back = false }: SlideLinkProps) {
+export function SlideLink({
+  href,
+  children,
+  className,
+  variant = 'primary',
+  exit = false,
+  back = false,
+}: SlideLinkProps) {
   const router = useRouter();
   const [, startTransition] = useTransition();
 
