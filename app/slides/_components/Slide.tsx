@@ -89,3 +89,22 @@ export function SlideListItem({ children, className }: { children: React.ReactNo
 export function SlideNote({ children, className }: { children: React.ReactNode; className?: string }) {
   return <p className={cn('text-muted-foreground/50 mt-4 text-sm', className)}>{children}</p>;
 }
+
+export function SlideDemo({
+  children,
+  className,
+  label,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  label?: string;
+}) {
+  return (
+    <div data-slide-interactive className={cn('w-full max-w-2xl', className)}>
+      {label && (
+        <div className="text-muted-foreground mb-2 text-xs font-medium tracking-wider uppercase">{label}</div>
+      )}
+      <div className="border-border bg-card rounded-xl border p-6">{children}</div>
+    </div>
+  );
+}

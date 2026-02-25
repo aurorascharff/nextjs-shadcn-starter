@@ -40,6 +40,13 @@ export default function SlidesLayout({ children }: SlidesLayoutProps) {
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
+      const target = e.target as HTMLElement;
+      if (
+        target.closest('[data-slide-interactive]') ||
+        target.matches('input, textarea, select, [contenteditable="true"]')
+      ) {
+        return;
+      }
       switch (e.key) {
         case 'ArrowRight':
         case ' ':
@@ -67,7 +74,12 @@ export default function SlidesLayout({ children }: SlidesLayoutProps) {
   }, []);
 
   function handleClick(e: React.MouseEvent) {
-    if ((e.target as HTMLElement).closest('button, a')) return;
+    if (
+      (e.target as HTMLElement).closest(
+        'a, button, input, select, textarea, label, [data-slide-interactive], [contenteditable]',
+      )
+    )
+      return;
     const x = e.clientX;
     const width = window.innerWidth;
     if (x < width / 3) {

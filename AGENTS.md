@@ -231,10 +231,22 @@ A composable presentation system using URL-based routing, ViewTransitions, and s
 
 - `app/slides/slides.tsx` — Slide registry. Add/remove/reorder slides here.
 - `app/slides/layout.tsx` — Client layout with navigation logic and ViewTransition wrappers.
-- `app/slides/_components/primitives.tsx` — All server-side slide primitives.
+- `app/slides/_components/Slide.tsx` — All server-side slide primitives.
 - `app/slides/_components/SlideLink.tsx` — Client component for links. `exit` prop triggers the deck exit ViewTransition.
 
 **Adding a slide:** Add a `<Slide>` element to the `slides` array in `app/slides/slides.tsx`. Compose with any combination of the primitives above. The layout and routing handle everything else automatically.
+
+**Interactive components:** Wrap client components in `<SlideDemo>` to embed interactive content. The `data-slide-interactive` attribute prevents click/keyboard navigation from interfering. Any `"use client"` component can be dropped into a slide — import it in `slides.tsx` and place it inside `<SlideDemo>`.
+
+```tsx
+<Slide>
+  <SlideDemo label="Live demo">
+    <MyClientComponent />
+  </SlideDemo>
+</Slide>
+```
+
+**Links:** Use `<SlideLink href="/slides/3">` inside slides to jump to a specific slide. Use `<SlideLink href="/" exit>` to leave the deck (triggers unveil animation). From outside the deck, link in with `<Link href="/slides/1">`.
 
 **Animations:** Slide-to-slide transitions use directional sliding via `addTransitionType('slide-forward' | 'slide-back')`. The deck exit (via `SlideLink` with `exit`) uses a scale+fade unveil. All animation CSS is in `globals.css` using `::view-transition-old`/`::view-transition-new` selectors.
 

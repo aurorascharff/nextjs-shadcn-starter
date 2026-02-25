@@ -1,7 +1,9 @@
+import { CounterDemo } from './_components/CounterDemo';
 import {
   Slide,
   SlideBadge,
   SlideCode,
+  SlideDemo,
   SlideList,
   SlideListItem,
   SlideNote,
@@ -44,6 +46,16 @@ export default async function SlidePage({ params }) {
   <SlideNote>Footnote text</SlideNote>
   <SlideLink href="/slides/1">Back →</SlideLink>
 </Slide>`}</SlideCode>
+  </Slide>,
+
+  <Slide key="interactive">
+    <SlideBadge>Interactive</SlideBadge>
+    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">React Components</SlideTitle>
+    <SlideSubtitle>Drop any client component into a slide — it just works</SlideSubtitle>
+    <SlideDemo label="Live demo">
+      <CounterDemo />
+    </SlideDemo>
+    <SlideNote>Wrap interactive content in SlideDemo — clicks and keys won&apos;t navigate</SlideNote>
   </Slide>,
 
   <Slide key="navigation" align="left">
