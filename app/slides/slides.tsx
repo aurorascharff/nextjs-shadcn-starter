@@ -125,7 +125,7 @@ async function greet(user: string) {
     <SlideSubtitle>Navigate back to the demo or start creating your own slides.</SlideSubtitle>
     <div className="mt-4 flex items-center gap-4">
       <SlideLink href="/" exit>
-        Go to Demo →
+        Exit Slides →
       </SlideLink>
       <SlideLink href="https://github.com/aurorascharff/nextjs-shadcn-starter" variant="ghost">
         GitHub
