@@ -93,7 +93,7 @@
   --sh-string: #397c3b;
   --sh-property: #005ee9;
   --sh-entity: #005ee9;
-  --sh-jsxliterals: #005ee9;
+  --sh-jsxliterals: #171717;
   --sh-sign: #666;
   --sh-comment: #666666;
 }
@@ -140,7 +140,7 @@
   --sh-string: #58c760;
   --sh-property: #62a6ff;
   --sh-entity: #62a6ff;
-  --sh-jsxliterals: #62a6ff;
+  --sh-jsxliterals: #ededed;
   --sh-sign: #a1a1a1;
   --sh-comment: #a1a1a1;
 }
