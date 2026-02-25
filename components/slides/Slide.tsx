@@ -1,5 +1,6 @@
 import { highlight } from 'sugar-high';
 import { cn } from '@/lib/utils';
+import { SlideDemoContent } from './SlideDemoContent';
 
 export function Slide({
   children,
@@ -102,7 +103,9 @@ export function SlideDemo({
   return (
     <div data-slide-interactive className={cn('w-full max-w-2xl', className)}>
       {label && <div className="text-muted-foreground mb-2 text-xs font-medium tracking-wider uppercase">{label}</div>}
-      <div className="border-border bg-card rounded-xl border p-6">{children}</div>
+      <div className="border-border bg-card rounded-xl border p-6">
+        <SlideDemoContent>{children}</SlideDemoContent>
+      </div>
     </div>
   );
 }
