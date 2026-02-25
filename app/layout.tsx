@@ -32,7 +32,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <body className={`${geistMono.variable} ${GeistPixelSquare.variable} antialiased`}>
           <ThemeProvider>
             <main>{children}</main>
-            <div className="fixed bottom-4 left-4 z-60 flex items-center gap-2">
+            <div
+              style={{ viewTransitionName: 'global-controls' }}
+              className="fixed bottom-4 left-4 z-60 flex items-center gap-2"
+            >
               <Link
                 href="https://github.com/aurorascharff/nextjs-shadcn-starter"
                 target="_blank"
