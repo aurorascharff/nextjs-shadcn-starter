@@ -1,4 +1,4 @@
-import { CounterDemo } from '@/app/slides/_components/CounterDemo';
+import { Counter } from '@/app/slides/_components/Counter';
 import { SlideLink } from '@/components/slides/SlideLink';
 
 export default function Demo1Page() {
@@ -10,7 +10,7 @@ export default function Demo1Page() {
       </p>
       <div className="border-border bg-card w-full max-w-sm rounded-xl border p-6">
         <p className="text-muted-foreground mb-4 text-center text-sm font-medium tracking-wider uppercase">Counter</p>
-        <CounterDemo />
+        <Counter />
       </div>
       <SlideLink href="/slides/5" back>
         ← Back to slides

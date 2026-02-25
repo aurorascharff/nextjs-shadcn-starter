@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export function CounterDemo() {
+export function Counter() {
   const [count, setCount] = useState(0);
 
   return (

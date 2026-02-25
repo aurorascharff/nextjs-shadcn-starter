@@ -1,4 +1,4 @@
-import { CounterDemo } from '@/app/slides/_components/CounterDemo';
+import { Counter } from '@/app/slides/_components/Counter';
 import {
   Slide,
   SlideBadge,
@@ -51,9 +51,9 @@ export default async function SlidePage({ params }) {
   <Slide key="interactive">
     <SlideBadge>Interactive</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">React Components</SlideTitle>
-    <SlideSubtitle>Drop any client component into a slide — it just works</SlideSubtitle>
+    <SlideSubtitle>Drop any component into a slide — it just works</SlideSubtitle>
     <SlideDemo label="Live demo">
-      <CounterDemo />
+      <Counter />
     </SlideDemo>
     <SlideNote>Wrap interactive content in SlideDemo — clicks and keys won&apos;t navigate</SlideNote>
   </Slide>,
