@@ -236,12 +236,12 @@ A composable presentation system using URL-based routing, ViewTransitions, and s
 
 **Adding a slide:** Add a `<Slide>` element to the `slides` array in `app/slides/slides.tsx`. Compose with any combination of the primitives above. The layout and routing handle everything else automatically.
 
-**Interactive components:** Wrap client components in `<SlideDemo>` to embed interactive content. The `data-slide-interactive` attribute prevents click/keyboard navigation from interfering. Any `"use client"` component can be dropped into a slide — import it in `slides.tsx` and place it inside `<SlideDemo>`.
+**Interactive components:** Wrap components in `<SlideDemo>` to embed interactive content. The `data-slide-interactive` attribute prevents click/keyboard navigation from interfering. Any `"use client"` component can be dropped into a slide — import it in `slides.tsx` and place it inside `<SlideDemo>`.
 
 ```tsx
 <Slide>
   <SlideDemo label="Live demo">
-    <MyClientComponent />
+    <MyComponent />
   </SlideDemo>
 </Slide>
 ```
