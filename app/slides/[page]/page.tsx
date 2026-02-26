@@ -1,9 +1,7 @@
-'use cache';
-
 import { notFound } from 'next/navigation';
 import { slides } from '@/app/slides/slides';
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return slides.map((_, i) => {
     return { page: String(i + 1) };
   });
