@@ -5,9 +5,12 @@ import {
   SlideDemo,
   SlideHeaderBadge,
   SlideLink,
+  SlideList,
+  SlideListItem,
   SlideNote,
   SlideSpeaker,
   SlideSpeakerGrid,
+  SlideSpeakerList,
   SlideSplitLayout,
   SlideStatement,
   SlideStatementList,
@@ -19,7 +22,7 @@ import { Counter } from '@/app/slides/_components/Counter';
 export const slides: React.ReactNode[] = [
   // 1. Title slide
   <Slide key="title" align="left">
-    <SlideHeaderBadge>Slide System</SlideHeaderBadge>
+    <SlideHeaderBadge className="font-pixel">Slide System</SlideHeaderBadge>
     <SlideTitle className="font-pixel">Composable Slide Primitives</SlideTitle>
     <SlideSubtitle>Build presentations with React components</SlideSubtitle>
     <SlideSpeakerGrid className="mt-8">
@@ -32,7 +35,9 @@ export const slides: React.ReactNode[] = [
     <SlideBadge>Slide</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">The base container</SlideTitle>
     <SlideSubtitle>Full-screen layout with automatic centering and a decorative border frame</SlideSubtitle>
-    <SlideNote>This slide uses align=&quot;center&quot; (default) · Set align=&quot;left&quot; for left-aligned content</SlideNote>
+    <SlideNote>
+      This slide uses align=&quot;center&quot; (default) · Set align=&quot;left&quot; for left-aligned content
+    </SlideNote>
   </Slide>,
 
   // 3. SlideSplitLayout
@@ -54,7 +59,19 @@ export const slides: React.ReactNode[] = [
     }
   />,
 
-  // 4. Typography primitives
+  // 4. SlideList
+  <Slide key="list" align="left">
+    <SlideBadge>SlideList</SlideBadge>
+    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Bullet lists</SlideTitle>
+    <SlideSubtitle>SlideList and SlideListItem for structured bullet points</SlideSubtitle>
+    <SlideList className="mt-6">
+      <SlideListItem>First item with consistent spacing</SlideListItem>
+      <SlideListItem>Second item — supports any content</SlideListItem>
+      <SlideListItem>Third item with custom styling via className</SlideListItem>
+    </SlideList>
+  </Slide>,
+
+  // 5. Typography primitives
   <Slide key="typography" align="left">
     <SlideBadge>Typography</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">SlideTitle</SlideTitle>
@@ -63,7 +80,7 @@ export const slides: React.ReactNode[] = [
     <SlideNote>SlideNote for small footnotes and annotations</SlideNote>
   </Slide>,
 
-  // 5. SlideCode
+  // 6. SlideCode
   <Slide key="code">
     <SlideBadge>SlideCode</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Syntax highlighting</SlideTitle>
@@ -80,7 +97,7 @@ export const slides: React.ReactNode[] = [
     <SlideNote>Powered by sugar-high · Automatically adapts to light and dark themes</SlideNote>
   </Slide>,
 
-  // 6. SlideDemo
+  // 7. SlideDemo
   <Slide key="demo">
     <SlideBadge>SlideDemo</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Interactive components</SlideTitle>
@@ -90,7 +107,7 @@ export const slides: React.ReactNode[] = [
     </SlideDemo>
   </Slide>,
 
-  // 7. SlideStatement
+  // 8. SlideStatement
   <SlideSplitLayout
     key="statements"
     left={
@@ -109,18 +126,34 @@ export const slides: React.ReactNode[] = [
     }
   />,
 
-  // 8. SlideSpeaker
+  // 9. SlideSpeaker
   <Slide key="speakers">
     <SlideBadge>SlideSpeaker</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Speaker components</SlideTitle>
-    <SlideSpeakerGrid className="mt-8">
-      <SlideSpeaker name="Speaker One" title="Role / Company" />
-      <SlideSpeaker name="Speaker Two" title="Role / Company" />
-    </SlideSpeakerGrid>
-    <SlideNote>SlideSpeakerGrid for side-by-side · SlideSpeakerList for vertical stacking</SlideNote>
+    <SlideSubtitle>SlideSpeakerGrid for side-by-side · SlideSpeakerList for vertical stacking</SlideSubtitle>
+    <div className="mt-8 flex flex-wrap items-start justify-center gap-12">
+      <div>
+        <p className="text-muted-foreground mb-4 text-center text-xs font-medium tracking-wider uppercase">
+          SlideSpeakerGrid
+        </p>
+        <SlideSpeakerGrid>
+          <SlideSpeaker name="Speaker One" title="Role / Company" />
+          <SlideSpeaker name="Speaker Two" title="Role / Company" />
+        </SlideSpeakerGrid>
+      </div>
+      <div>
+        <p className="text-muted-foreground mb-4 text-center text-xs font-medium tracking-wider uppercase">
+          SlideSpeakerList
+        </p>
+        <SlideSpeakerList>
+          <SlideSpeaker name="Speaker One" title="Role / Company" />
+          <SlideSpeaker name="Speaker Two" title="Role / Company" />
+        </SlideSpeakerList>
+      </div>
+    </div>
   </Slide>,
 
-  // 9. Navigation
+  // 10. Navigation
   <SlideSplitLayout
     key="navigation"
     left={
@@ -140,19 +173,21 @@ export const slides: React.ReactNode[] = [
     }
   />,
 
-  // 10. SlideLink and routing
+  // 11. SlideLink and routing
   <Slide key="links" align="left">
     <SlideBadge>SlideLink</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Links and routing</SlideTitle>
     <SlideSubtitle>Navigate between slides, to breakout pages, or external URLs</SlideSubtitle>
     <div className="mt-6 flex flex-wrap items-center gap-4">
       <SlideLink href="/slides/demo1">Breakout page →</SlideLink>
-      <SlideLink href="/" variant="ghost">Exit deck</SlideLink>
+      <SlideLink href="/" variant="ghost">
+        Exit deck
+      </SlideLink>
     </div>
     <SlideNote>Breakout routes live inside /slides but render without the deck chrome</SlideNote>
   </Slide>,
 
-  // 11. Closing
+  // 12. Closing
   <Slide key="end">
     <SlideTitle className="font-pixel">That&apos;s the slide system.</SlideTitle>
     <SlideSubtitle>Compose these primitives to build any presentation</SlideSubtitle>
