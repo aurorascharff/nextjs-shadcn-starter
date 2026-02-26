@@ -5,194 +5,204 @@ import {
   SlideDemo,
   SlideHeaderBadge,
   SlideLink,
-  SlideList,
-  SlideListItem,
   SlideNote,
   SlideSpeaker,
   SlideSpeakerGrid,
-  SlideSpeakerList,
   SlideSplitLayout,
   SlideStatement,
   SlideStatementList,
   SlideSubtitle,
   SlideTitle,
 } from 'nextjs-slides';
-import { Counter } from '@/app/slides/_components/Counter';
+import { TabListDemo } from '@/app/slides/_components/TabListDemo';
 
 export const slides: React.ReactNode[] = [
   // 1. Title slide
   <Slide key="title" align="left">
-    <SlideHeaderBadge className="font-pixel">Slide System</SlideHeaderBadge>
-    <SlideTitle className="font-pixel">Composable Slide Primitives</SlideTitle>
-    <SlideSubtitle>Build presentations with React components</SlideSubtitle>
+    <SlideHeaderBadge>Next.js Demo Kit</SlideHeaderBadge>
+    <SlideTitle className="font-pixel">Build Demos Fast</SlideTitle>
+    <SlideSubtitle>A toolkit for building interactive demos with modern React patterns</SlideSubtitle>
     <SlideSpeakerGrid className="mt-8">
       <SlideSpeaker name="Your Name" title="Your Title" />
     </SlideSpeakerGrid>
   </Slide>,
 
-  // 2. Slide component
-  <Slide key="slide-component">
-    <SlideBadge>Slide</SlideBadge>
-    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">The base container</SlideTitle>
-    <SlideSubtitle>Full-screen layout with automatic centering and a decorative border frame</SlideSubtitle>
-    <SlideNote>
-      This slide uses align=&quot;center&quot; (default) · Set align=&quot;left&quot; for left-aligned content
-    </SlideNote>
-  </Slide>,
-
-  // 3. SlideSplitLayout
+  // 2. Stack
   <SlideSplitLayout
-    key="split-layout"
+    key="stack"
     left={
       <>
-        <SlideBadge>SlideSplitLayout</SlideBadge>
-        <SlideTitle className="mt-6 text-3xl sm:text-4xl md:text-5xl">Two-column layout</SlideTitle>
-        <SlideSubtitle className="mt-4">Perfect for comparing concepts or pairing visuals with text</SlideSubtitle>
+        <SlideBadge>Stack</SlideBadge>
+        <SlideTitle className="mt-6 text-3xl sm:text-4xl md:text-5xl">Modern foundations</SlideTitle>
+        <SlideSubtitle className="mt-4">Everything you need to build production-ready demos</SlideSubtitle>
       </>
     }
     right={
       <SlideStatementList>
-        <SlideStatement title="left prop" description="Content for the left column" />
-        <SlideStatement title="right prop" description="Content for the right column" />
-        <SlideStatement title="Divider" description="Automatic vertical separator" />
+        <SlideStatement title="Next.js 16" description="App Router with cacheComponents" />
+        <SlideStatement title="React 19" description="Actions, useOptimistic, use()" />
+        <SlideStatement title="Tailwind CSS v4" description="CSS-first configuration" />
+        <SlideStatement title="shadcn/ui" description="Copy-paste components on Base UI" />
+        <SlideStatement title="Prisma ORM" description="Type-safe database access" />
       </SlideStatementList>
     }
   />,
 
-  // 4. SlideList
-  <Slide key="list" align="left">
-    <SlideBadge>SlideList</SlideBadge>
-    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Bullet lists</SlideTitle>
-    <SlideSubtitle>SlideList and SlideListItem for structured bullet points</SlideSubtitle>
-    <SlideList className="mt-6">
-      <SlideListItem>First item with consistent spacing</SlideListItem>
-      <SlideListItem>Second item — supports any content</SlideListItem>
-      <SlideListItem>Third item with custom styling via className</SlideListItem>
-    </SlideList>
+  // 3. Async React
+  <Slide key="async-react">
+    <SlideBadge>Async React</SlideBadge>
+    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">No more isLoading state</SlideTitle>
+    <SlideSubtitle>React 19 primitives handle async coordination for you</SlideSubtitle>
+    <SlideCode title="The old way vs the new way">{`// Before: manual state management
+const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState(null);
+
+// After: React handles it
+const [isPending, startTransition] = useTransition();
+startTransition(async () => {
+  await submitToServer();
+});`}</SlideCode>
   </Slide>,
 
-  // 5. Typography primitives
-  <Slide key="typography" align="left">
-    <SlideBadge>Typography</SlideBadge>
-    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">SlideTitle</SlideTitle>
-    <SlideSubtitle>SlideSubtitle for secondary text with muted styling</SlideSubtitle>
-    <SlideHeaderBadge>SlideHeaderBadge for italic accent text</SlideHeaderBadge>
-    <SlideNote>SlideNote for small footnotes and annotations</SlideNote>
+  // 4. Action Props Pattern
+  <Slide key="action-props">
+    <SlideBadge>Design Pattern</SlideBadge>
+    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Action Props</SlideTitle>
+    <SlideSubtitle>Components handle their own async coordination</SlideSubtitle>
+    <SlideCode title="components/design/TabList.tsx">{`function TabList({ tabs, activeTab, changeAction }) {
+  const [optimisticTab, setOptimisticTab] = useOptimistic(activeTab);
+  const [isPending, startTransition] = useTransition();
+
+  function handleChange(value: string) {
+    startTransition(async () => {
+      setOptimisticTab(value);  // Instant feedback
+      await changeAction(value); // Server update
+    });
+  }
+  // ...
+}`}</SlideCode>
   </Slide>,
 
-  // 6. SlideCode
-  <Slide key="code">
-    <SlideBadge>SlideCode</SlideBadge>
-    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Syntax highlighting</SlideTitle>
-    <SlideCode title="example.tsx">{`export function Button({ children, onClick }: ButtonProps) {
+  // 5. Live demo
+  <SlideSplitLayout
+    key="demo"
+    left={
+      <>
+        <SlideBadge>Live Demo</SlideBadge>
+        <SlideTitle className="mt-6 text-3xl sm:text-4xl md:text-5xl">Try it</SlideTitle>
+        <SlideSubtitle className="mt-4">Click a tab — notice instant feedback + pending spinner</SlideSubtitle>
+        <SlideDemo label="TabList component" className="mt-6">
+          <TabListDemo />
+        </SlideDemo>
+      </>
+    }
+    right={
+      <SlideCode title="Usage">{`<TabList
+  tabs={[
+    { label: 'Overview', value: 'overview' },
+    { label: 'Analytics', value: 'analytics' },
+    { label: 'Settings', value: 'settings' },
+  ]}
+  activeTab={activeTab}
+  changeAction={async (value) => {
+    await updateTab(value);
+    setActiveTab(value);
+  }}
+/>`}</SlideCode>
+    }
+  />,
+
+  // 6. Data fetching
+  <SlideSplitLayout
+    key="data-fetching"
+    left={
+      <>
+        <SlideBadge>Data</SlideBadge>
+        <SlideTitle className="mt-6 text-3xl sm:text-4xl md:text-5xl">Fetching &amp; mutations</SlideTitle>
+        <SlideSubtitle className="mt-4">Queries with cache(), mutations with Server Actions</SlideSubtitle>
+      </>
+    }
+    right={
+      <SlideStatementList>
+        <SlideStatement title="data/queries/" description="Wrap with cache() for deduplication" />
+        <SlideStatement title="data/actions/" description="Server Actions with 'use server'" />
+        <SlideStatement title="revalidateTag()" description="Fine-grained cache invalidation" />
+        <SlideStatement title="Suspense" description="Streaming with loading boundaries" />
+      </SlideStatementList>
+    }
+  />,
+
+  // 7. cacheComponents
+  <Slide key="cache-components">
+    <SlideBadge>Performance</SlideBadge>
+    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Static shell optimization</SlideTitle>
+    <SlideSubtitle>cacheComponents caches server components without dynamic data</SlideSubtitle>
+    <SlideCode title="next.config.ts">{`export default {
+  experimental: {
+    cacheComponents: true,
+  },
+};
+
+// Keep pages non-async, push dynamic data into Suspense
+export default function Page() {
   return (
-    <button
-      className="rounded-md bg-primary px-4 py-2"
-      onClick={onClick}
-    >
-      {children}
-    </button>
+    <Suspense fallback={<Skeleton />}>
+      <DynamicContent />
+    </Suspense>
   );
 }`}</SlideCode>
-    <SlideNote>Powered by sugar-high · Automatically adapts to light and dark themes</SlideNote>
   </Slide>,
 
-  // 7. SlideDemo
-  <Slide key="demo">
-    <SlideBadge>SlideDemo</SlideBadge>
-    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Interactive components</SlideTitle>
-    <SlideSubtitle>Embed live React components — keyboard navigation is disabled inside</SlideSubtitle>
-    <SlideDemo label="Live counter">
-      <Counter />
-    </SlideDemo>
-  </Slide>,
-
-  // 8. SlideStatement
+  // 8. Project structure
   <SlideSplitLayout
-    key="statements"
+    key="structure"
     left={
       <>
-        <SlideBadge>SlideStatement</SlideBadge>
-        <SlideTitle className="mt-6 text-3xl sm:text-4xl md:text-5xl">Structured content blocks</SlideTitle>
-        <SlideSubtitle className="mt-4">Title and description pairs with consistent styling</SlideSubtitle>
+        <SlideBadge>Structure</SlideBadge>
+        <SlideTitle className="mt-6 text-3xl sm:text-4xl md:text-5xl">Organized by purpose</SlideTitle>
+        <SlideSubtitle className="mt-4">Everything lives at the nearest shared space</SlideSubtitle>
       </>
     }
     right={
       <SlideStatementList>
-        <SlideStatement title="title prop" description="Bold heading for the statement" />
-        <SlideStatement title="description prop" description="Optional muted text below" />
-        <SlideStatement title="SlideStatementList" description="Wrapper with border separators" />
+        <SlideStatement title="app/" description="Pages, layouts, route-local components" />
+        <SlideStatement title="components/ui/" description="shadcn/ui primitives" />
+        <SlideStatement title="components/design/" description="Action props components" />
+        <SlideStatement title="data/queries/" description="Server-side data fetching" />
+        <SlideStatement title="data/actions/" description="Server Actions for mutations" />
       </SlideStatementList>
     }
   />,
 
-  // 9. SlideSpeaker
-  <Slide key="speakers">
-    <SlideBadge>SlideSpeaker</SlideBadge>
-    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Speaker components</SlideTitle>
-    <SlideSubtitle>SlideSpeakerGrid for side-by-side · SlideSpeakerList for vertical stacking</SlideSubtitle>
-    <div className="mt-8 flex flex-wrap items-start justify-center gap-12">
-      <div>
-        <p className="text-muted-foreground mb-4 text-center text-xs font-medium tracking-wider uppercase">
-          SlideSpeakerGrid
-        </p>
-        <SlideSpeakerGrid>
-          <SlideSpeaker name="Speaker One" title="Role / Company" />
-          <SlideSpeaker name="Speaker Two" title="Role / Company" />
-        </SlideSpeakerGrid>
-      </div>
-      <div>
-        <p className="text-muted-foreground mb-4 text-center text-xs font-medium tracking-wider uppercase">
-          SlideSpeakerList
-        </p>
-        <SlideSpeakerList>
-          <SlideSpeaker name="Speaker One" title="Role / Company" />
-          <SlideSpeaker name="Speaker Two" title="Role / Company" />
-        </SlideSpeakerList>
-      </div>
-    </div>
+  // 9. Slides
+  <Slide key="slides">
+    <SlideBadge>Presentations</SlideBadge>
+    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Built-in slide deck</SlideTitle>
+    <SlideSubtitle>Powered by nextjs-slides — composable primitives with ViewTransitions</SlideSubtitle>
+    <SlideCode title="app/slides/slides.tsx">{`import { Slide, SlideTitle, SlideCode } from 'nextjs-slides';
+
+export const slides = [
+  <Slide key="intro">
+    <SlideTitle>My Presentation</SlideTitle>
+    <SlideCode title="example.ts">{\`const x = 1;\`}</SlideCode>
+  </Slide>,
+];`}</SlideCode>
+    <SlideNote>Keyboard navigation · Progress dots · Breakout routes</SlideNote>
   </Slide>,
 
-  // 10. Navigation
-  <SlideSplitLayout
-    key="navigation"
-    left={
-      <>
-        <SlideBadge>Navigation</SlideBadge>
-        <SlideTitle className="mt-6 text-3xl sm:text-4xl md:text-5xl">Keyboard controls</SlideTitle>
-        <SlideSubtitle className="mt-4">Built-in navigation with ViewTransition animations</SlideSubtitle>
-      </>
-    }
-    right={
-      <SlideStatementList>
-        <SlideStatement title="→ or Space" description="Go to next slide" />
-        <SlideStatement title="←" description="Go to previous slide" />
-        <SlideStatement title="Progress dots" description="Visual indicator at the bottom" />
-        <SlideStatement title="Slide counter" description="Current / total in bottom right" />
-      </SlideStatementList>
-    }
-  />,
-
-  // 11. SlideLink and routing
-  <Slide key="links" align="left">
-    <SlideBadge>SlideLink</SlideBadge>
-    <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Links and routing</SlideTitle>
-    <SlideSubtitle>Navigate between slides, to breakout pages, or external URLs</SlideSubtitle>
-    <div className="mt-6 flex flex-wrap items-center gap-4">
-      <SlideLink href="/slides/demo1">Breakout page →</SlideLink>
-      <SlideLink href="/" variant="ghost">
-        Exit deck
-      </SlideLink>
-    </div>
-    <SlideNote>Breakout routes live inside /slides but render without the deck chrome</SlideNote>
-  </Slide>,
-
-  // 12. Closing
+  // 10. Get started
   <Slide key="end">
-    <SlideTitle className="font-pixel">That&apos;s the slide system.</SlideTitle>
-    <SlideSubtitle>Compose these primitives to build any presentation</SlideSubtitle>
+    <SlideTitle className="font-pixel">Start building.</SlideTitle>
+    <SlideSubtitle>Clone the repo, run bun dev, and start creating</SlideSubtitle>
+    <SlideCode title="Terminal">{`git clone https://github.com/aurorascharff/nextjs-demo-kit
+cd nextjs-demo-kit
+bun install
+bun run dev`}</SlideCode>
     <div className="mt-6 flex items-center gap-4">
-      <SlideLink href="/">Back to app →</SlideLink>
+      <SlideLink href="/">Explore the demo →</SlideLink>
+      <SlideLink href="https://github.com/aurorascharff/nextjs-demo-kit" variant="ghost">
+        GitHub
+      </SlideLink>
     </div>
   </Slide>,
 ];
