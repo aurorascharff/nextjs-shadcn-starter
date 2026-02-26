@@ -35,9 +35,7 @@ export const slides: React.ReactNode[] = [
     <SlideBadge>Slide</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">The base container</SlideTitle>
     <SlideSubtitle>Full-screen layout with automatic centering and a decorative border frame</SlideSubtitle>
-    <SlideNote>
-      This slide uses align=&quot;center&quot; (default) · Set align=&quot;left&quot; for left-aligned content
-    </SlideNote>
+    <SlideNote>This slide uses align=&quot;center&quot; (default) · Set align=&quot;left&quot; for left-aligned content</SlideNote>
   </Slide>,
 
   // 3. SlideSplitLayout
@@ -101,7 +99,7 @@ export const slides: React.ReactNode[] = [
   <Slide key="demo">
     <SlideBadge>SlideDemo</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Interactive components</SlideTitle>
-    <SlideSubtitle>Embed live React components — clicks and keys won&apos;t trigger navigation</SlideSubtitle>
+    <SlideSubtitle>Embed live React components — keyboard navigation is disabled inside</SlideSubtitle>
     <SlideDemo label="Live counter">
       <Counter />
     </SlideDemo>
@@ -133,18 +131,14 @@ export const slides: React.ReactNode[] = [
     <SlideSubtitle>SlideSpeakerGrid for side-by-side · SlideSpeakerList for vertical stacking</SlideSubtitle>
     <div className="mt-8 flex flex-wrap items-start justify-center gap-12">
       <div>
-        <p className="text-muted-foreground mb-4 text-center text-xs font-medium tracking-wider uppercase">
-          SlideSpeakerGrid
-        </p>
+        <p className="text-muted-foreground mb-4 text-center text-xs font-medium uppercase tracking-wider">SlideSpeakerGrid</p>
         <SlideSpeakerGrid>
           <SlideSpeaker name="Speaker One" title="Role / Company" />
           <SlideSpeaker name="Speaker Two" title="Role / Company" />
         </SlideSpeakerGrid>
       </div>
       <div>
-        <p className="text-muted-foreground mb-4 text-center text-xs font-medium tracking-wider uppercase">
-          SlideSpeakerList
-        </p>
+        <p className="text-muted-foreground mb-4 text-center text-xs font-medium uppercase tracking-wider">SlideSpeakerList</p>
         <SlideSpeakerList>
           <SlideSpeaker name="Speaker One" title="Role / Company" />
           <SlideSpeaker name="Speaker Two" title="Role / Company" />
@@ -180,9 +174,7 @@ export const slides: React.ReactNode[] = [
     <SlideSubtitle>Navigate between slides, to breakout pages, or external URLs</SlideSubtitle>
     <div className="mt-6 flex flex-wrap items-center gap-4">
       <SlideLink href="/slides/demo1">Breakout page →</SlideLink>
-      <SlideLink href="/" variant="ghost">
-        Exit deck
-      </SlideLink>
+      <SlideLink href="/" variant="ghost">Exit deck</SlideLink>
     </div>
     <SlideNote>Breakout routes live inside /slides but render without the deck chrome</SlideNote>
   </Slide>,
