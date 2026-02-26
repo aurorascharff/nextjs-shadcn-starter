@@ -1,9 +1,8 @@
 'use client';
 
-import { Loader2 } from 'lucide-react';
 import { useOptimistic, useTransition } from 'react';
-
 import { Tabs, TabsList as BaseTabsList, TabsTrigger, tabsListVariants } from '@/components/ui/tabs';
+import { Spinner } from '../ui/spinner';
 
 type Tab = {
   label: string;
@@ -14,29 +13,22 @@ type TabListProps = {
   tabs: Tab[];
   activeTab: string;
   changeAction?: (value: string) => void | Promise<void>;
-  onChange?: (value: string) => void;
+  onChange?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
-  children?: React.ReactNode;
 };
 
-/**
- * A design component that wraps shadcn Tabs with built-in
- * transition and optimistic update handling.
- *
- * The `changeAction` prop signals that the function will run
- * inside a transition, enabling optimistic updates.
- * The `onChange` prop is a regular callback for immediate side effects.
- */
-export function TabList({ tabs, activeTab, changeAction, onChange, className, children }: TabListProps) {
+export function TabList({ tabs, activeTab, changeAction, onChange, className }: TabListProps) {
   const [optimisticTab, setOptimisticTab] = useOptimistic(activeTab);
   const [isPending, startTransition] = useTransition();
 
-  function tabChangeAction(value: string) {
-    onChange?.(value);
-    startTransition(async () => {
-      setOptimisticTab(value);
-      await changeAction?.(value);
-    });
+  function handleTabChange(e: React.MouseEvent<HTMLButtonElement>, value: string) {
+    onChange?.(e);
+    if (changeAction) {
+      startTransition(async () => {
+        setOptimisticTab(value);
+        await changeAction?.(value);
+      });
+    }
   }
 
   return (
@@ -48,8 +40,8 @@ export function TabList({ tabs, activeTab, changeAction, onChange, className, ch
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                onClick={() => {
-                  tabChangeAction(tab.value);
+                onClick={e => {
+                  handleTabChange(e, tab.value);
                 }}
               >
                 {tab.label}
@@ -57,12 +49,10 @@ export function TabList({ tabs, activeTab, changeAction, onChange, className, ch
             );
           })}
         </BaseTabsList>
-        {isPending && <Loader2 className="text-muted-foreground size-4 animate-spin" />}
+        {isPending && <Spinner />}
       </div>
-      {children}
     </Tabs>
   );
 }
 
 export { Tabs, TabsTrigger, tabsListVariants };
-export { TabsList as BaseTabsList } from '@/components/ui/tabs';

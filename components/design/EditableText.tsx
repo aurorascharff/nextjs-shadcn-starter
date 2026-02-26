@@ -1,0 +1,122 @@
+'use client';
+
+import { Check, Pencil, X } from 'lucide-react';
+import { useOptimistic, useState, useTransition } from 'react';
+import { cn } from '@/lib/utils';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Spinner } from '../ui/spinner';
+
+type EditableTextProps = Omit<React.ComponentProps<'input'>, 'value' | 'action' | 'onChange'> & {
+  value: string;
+  prefix?: string;
+  displayValue?: ((value: string) => React.ReactNode) | React.ReactNode;
+  onChange?: (e: React.SyntheticEvent) => void;
+  action: (value: string) => void | Promise<void>;
+};
+
+export function EditableText({
+  value,
+  placeholder = 'Click to edit...',
+  prefix,
+  displayValue,
+  action,
+  onChange,
+  className,
+  ...inputProps
+}: EditableTextProps) {
+  const [isPending, startTransition] = useTransition();
+  const [optimisticValue, setOptimisticValue] = useOptimistic(value);
+  const [isEditing, setIsEditing] = useState(false);
+  const [draft, setDraft] = useState(value);
+
+  function handleCommit(e: React.SyntheticEvent) {
+    setIsEditing(false);
+    if (draft.trim() === optimisticValue) return;
+    onChange?.(e);
+    startTransition(async () => {
+      setOptimisticValue(draft);
+      await action(draft);
+    });
+  }
+
+  function handleCancel() {
+    setDraft(optimisticValue);
+    setIsEditing(false);
+  }
+
+  const resolvedDisplay =
+    optimisticValue !== ''
+      ? typeof displayValue === 'function'
+        ? displayValue(optimisticValue)
+        : (displayValue ?? `${prefix ?? ''}${optimisticValue}`)
+      : null;
+
+  return (
+    <div className={cn('flex h-8 items-center gap-1', className)}>
+      {isEditing ? (
+        <>
+          <div className="relative flex-1">
+            {prefix && (
+              <span className="text-muted-foreground pointer-events-none absolute top-1/2 left-2 -translate-y-1/2 text-sm">
+                {prefix}
+              </span>
+            )}
+            <Input
+              {...inputProps}
+              value={draft}
+              onChange={e => {
+                setDraft(e.target.value);
+              }}
+              onBlur={e => {
+                const related = e.relatedTarget as HTMLElement | null;
+                if (related?.closest('[data-editable-action]')) return;
+                handleCommit(e);
+              }}
+              onKeyDown={e => {
+                if (e.key === 'Enter') handleCommit(e);
+                if (e.key === 'Escape') handleCancel();
+              }}
+              placeholder={placeholder}
+              autoFocus
+              className={cn('h-8 text-sm', prefix && 'pl-6')}
+            />
+          </div>
+          <Button
+            data-editable-action
+            className="ml-2"
+            size="icon-xs"
+            variant="ghost"
+            onClick={e => {
+              handleCommit(e);
+            }}
+            aria-label="Save"
+          >
+            <Check />
+          </Button>
+          <Button data-editable-action size="icon-xs" variant="ghost" onClick={handleCancel} aria-label="Cancel">
+            <X />
+          </Button>
+        </>
+      ) : (
+        <>
+          <button
+            type="button"
+            aria-label={`Edit ${optimisticValue || placeholder}`}
+            className="hover:bg-muted flex h-8 cursor-pointer items-center gap-1 rounded-md px-2 transition-colors"
+            onClick={() => {
+              setDraft(optimisticValue);
+              setIsEditing(true);
+            }}
+          >
+            <span className={cn('text-sm', !resolvedDisplay && 'text-muted-foreground italic')}>
+              {resolvedDisplay || placeholder}
+            </span>
+            <Pencil className="text-muted-foreground size-3 shrink-0" />
+          </button>
+          {isPending && <Spinner className="size-3" />}
+        </>
+      )}
+    </div>
+  );
+}
