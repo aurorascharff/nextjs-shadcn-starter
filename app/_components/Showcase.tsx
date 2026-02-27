@@ -5,7 +5,7 @@ function ShowcaseWrapper({ className, ...props }: React.ComponentProps<'div'>) {
     <div
       data-slot="showcase-wrapper"
       className={cn(
-        'grid w-full min-w-0 items-start gap-8 sm:gap-12 md:grid-cols-2 md:gap-8',
+        'grid h-full w-full min-w-0 items-start gap-6 md:grid-cols-2 md:gap-8',
         className,
       )}
       {...props}
@@ -27,7 +27,7 @@ function Showcase({
     <div
       data-slot="showcase"
       className={cn(
-        'mx-auto flex w-full max-w-lg min-w-0 flex-col gap-1 self-stretch lg:max-w-none',
+        'mx-auto flex w-full max-w-lg min-w-0 flex-col gap-1 overflow-hidden lg:max-w-none',
         containerClassName,
       )}
       {...props}
@@ -36,7 +36,7 @@ function Showcase({
       <div
         data-slot="showcase-content"
         className={cn(
-          "bg-background text-foreground flex min-w-0 flex-1 flex-col items-start gap-6 border border-dashed p-4 sm:p-6 *:[div:not([class*='w-'])]:w-full",
+          "bg-background text-foreground flex min-h-0 min-w-0 flex-1 flex-col items-start gap-4 overflow-hidden border border-dashed p-4 *:[div:not([class*='w-'])]:w-full",
           className,
         )}
       >

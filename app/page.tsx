@@ -9,7 +9,7 @@ const techStack = ['Next.js 16', 'React 19', 'Tailwind v4', 'shadcn/ui', 'Prisma
 
 export default function Page() {
   return (
-    <div className="bg-background mx-auto flex w-full max-w-5xl flex-col gap-8 p-6 lg:p-12 2xl:max-w-6xl">
+    <div className="bg-background mx-auto flex h-screen max-h-screen w-full max-w-5xl flex-col gap-6 overflow-hidden p-6 lg:px-12 lg:py-8 2xl:max-w-6xl">
       <nav className="flex items-center justify-between">
         <span className="text-muted-foreground text-sm font-medium">Next.js Demo Kit</span>
         <Link
@@ -23,20 +23,20 @@ export default function Page() {
         </Link>
       </nav>
 
-      <section className="flex flex-col gap-6">
-        <div className="flex flex-col gap-4">
-          <h1 className="text-foreground text-4xl font-bold tracking-tight sm:text-5xl">Build demos fast</h1>
-          <p className="text-muted-foreground max-w-lg text-lg leading-relaxed sm:text-xl">
-            A toolkit for interactive demos with React 19, Next.js 16, and modern patterns. shadcn/ui &middot; Prisma
-            &middot; Tailwind v4
-          </p>
-        </div>
-        <Link href={'/slides/1' as Route} className={buttonVariants({ size: 'default', variant: 'default' }) + ' self-start'}>
+      <section className="flex flex-col gap-3">
+        <h1 className="text-foreground text-3xl font-bold tracking-tight sm:text-4xl">Build demos fast</h1>
+        <p className="text-muted-foreground max-w-lg text-base leading-relaxed">
+          A toolkit for interactive demos with React 19, Next.js 16, and modern patterns. shadcn/ui &middot; Prisma
+          &middot; Tailwind v4
+        </p>
+        <Link href={'/slides/1' as Route} className={buttonVariants({ size: 'default', variant: 'default' }) + ' mt-1 self-start'}>
           Start Slides &rarr;
         </Link>
       </section>
 
-      <ComponentExample />
+      <div className="min-h-0 flex-1">
+        <ComponentExample />
+      </div>
 
       <section className="flex flex-col gap-4">
         <span className="text-muted-foreground text-xs font-semibold tracking-widest uppercase">Component Showcase</span>
