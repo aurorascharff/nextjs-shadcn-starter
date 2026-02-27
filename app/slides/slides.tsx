@@ -137,20 +137,12 @@ startTransition(async () => {
     <SlideBadge>Performance</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">Static shell optimization</SlideTitle>
     <SlideSubtitle>cacheComponents caches server components without dynamic data</SlideSubtitle>
-    <SlideCode title="next.config.ts">{`export default {
-  experimental: {
-    cacheComponents: true,
-  },
-};
-
-// Keep pages non-async, push dynamic data into Suspense
-export default function Page() {
-  return (
-    <Suspense fallback={<Skeleton />}>
-      <DynamicContent />
-    </Suspense>
-  );
-}`}</SlideCode>
+    <SlideCode title="next.config.ts">{`const nextConfig: NextConfig = {
+  cacheComponents: true,  // Stable in Next.js 16
+  reactCompiler: true,
+  typedRoutes: true,
+};`}</SlideCode>
+    <SlideNote>Keep pages non-async · Push dynamic data into Suspense boundaries</SlideNote>
   </Slide>,
 
   // 8. Project structure
@@ -194,10 +186,9 @@ export const slides = [
   <Slide key="end">
     <SlideTitle className="font-pixel">Start building.</SlideTitle>
     <SlideSubtitle>Clone the repo, run bun dev, and start creating</SlideSubtitle>
-    <SlideCode title="getting-started.ts">{`git clone https://github.com/aurorascharff/nextjs-demo-kit
-cd nextjs-demo-kit
-bun install
-bun run dev`}</SlideCode>
+    <SlideCode title="setup.ts">{`// Clone and run
+// git clone https://github.com/aurorascharff/nextjs-demo-kit
+// cd nextjs-demo-kit && bun install && bun run dev`}</SlideCode>
     <div className="mt-6 flex items-center gap-4">
       <SlideLink href="/">Explore the demo →</SlideLink>
       <SlideLink href="https://github.com/aurorascharff/nextjs-demo-kit" variant="ghost">

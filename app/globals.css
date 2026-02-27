@@ -208,3 +208,8 @@
     slide-down 150ms ease-in both;
 }
 
+/* Keep theme toggle above view transitions */
+::view-transition-group(theme-toggle) {
+  z-index: 100;
+}
+
