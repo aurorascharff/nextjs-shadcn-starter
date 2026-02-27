@@ -53,7 +53,7 @@ export const slides: React.ReactNode[] = [
     <SlideBadge>Async React</SlideBadge>
     <SlideTitle className="text-3xl sm:text-4xl md:text-5xl">No more isLoading state</SlideTitle>
     <SlideSubtitle>React 19 primitives handle async coordination for you</SlideSubtitle>
-    <SlideCode title="The old way vs the new way">{`// Before: manual state management
+    <SlideCode title="async-comparison.tsx">{`// Before: manual state management
 const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState(null);
 
@@ -97,7 +97,7 @@ startTransition(async () => {
       </>
     }
     right={
-      <SlideCode title="Usage">{`<TabList
+      <SlideCode title="usage.tsx">{`<TabList
   tabs={[
     { label: 'Overview', value: 'overview' },
     { label: 'Analytics', value: 'analytics' },
@@ -194,7 +194,7 @@ export const slides = [
   <Slide key="end">
     <SlideTitle className="font-pixel">Start building.</SlideTitle>
     <SlideSubtitle>Clone the repo, run bun dev, and start creating</SlideSubtitle>
-    <SlideCode title="Terminal">{`git clone https://github.com/aurorascharff/nextjs-demo-kit
+    <SlideCode title="terminal.sh">{`git clone https://github.com/aurorascharff/nextjs-demo-kit
 cd nextjs-demo-kit
 bun install
 bun run dev`}</SlideCode>
