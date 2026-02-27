@@ -13,7 +13,7 @@ import {
   SlideSubtitle,
   SlideTitle,
 } from 'nextjs-slides';
-import { TabListDemo } from '@/app/slides/_components/TabListDemo';
+import { TabListDemo } from '@/app/(demo)/slides/_components/TabListDemo';
 
 export const slides: React.ReactNode[] = [
   <Slide key="title" align="left">
@@ -51,7 +51,9 @@ export const slides: React.ReactNode[] = [
       <>
         <SlideBadge>Action Props</SlideBadge>
         <SlideTitle className="mt-6 text-3xl sm:text-4xl md:text-5xl">Async coordination</SlideTitle>
-        <SlideSubtitle className="mt-4">Components own useOptimistic + useTransition — consumers pass changeAction</SlideSubtitle>
+        <SlideSubtitle className="mt-4">
+          Components own useOptimistic + useTransition — consumers pass changeAction
+        </SlideSubtitle>
         <SlideDemo label="Try it" className="mt-6">
           <TabListDemo />
         </SlideDemo>

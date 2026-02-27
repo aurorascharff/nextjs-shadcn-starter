@@ -1,5 +1,5 @@
 import { SlideLink } from 'nextjs-slides';
-import { TabListDemo } from '@/app/slides/_components/TabListDemo';
+import { TabListDemo } from '@/app/(demo)/slides/_components/TabListDemo';
 
 export default function Demo1Page() {
   return (
