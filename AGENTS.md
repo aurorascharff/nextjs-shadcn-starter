@@ -27,7 +27,8 @@ Next.js 16 App Router · React 19 · TypeScript strict · Tailwind CSS 4 · shad
 - `forbidden()` / `unauthorized()` — throw from Server Components to trigger `forbidden.tsx` / `unauthorized.tsx`
 - `connection()` — opt into dynamic rendering
 - `'use cache'` + `cacheLife()` + `cacheTag()` — caching directive
-- `revalidateTag()` — invalidate cache tags
+- `updateTag()` — invalidate cache from Server Actions (read-your-own-writes; next request waits for fresh data)
+- `revalidateTag()` — invalidate cache tags (Route Handlers, webhooks, or when stale-while-revalidate desired)
 - `after()` — run code after response is sent
 
 ## Typed Routes
@@ -97,14 +98,19 @@ return <PostList postsPromise={postsPromise} />;
 // then in the client component: const posts = use(postsPromise);
 ```
 
-**Mutations** live in `data/actions/` with `"use server"`. Invalidate with `revalidateTag()` or `revalidatePath()` after mutating. Always call from within a transition for pending state.
+**Mutations** live in `data/actions/` with `"use server"`. Invalidate with `updateTag()` (Server Actions, read-your-own-writes), `revalidateTag()`, or `revalidatePath()` after mutating. Always call from within a transition for pending state.
 
 ```ts
 // data/actions/posts.ts
 'use server';
-export async function deletePostAction(id: string) {
-  await db.post.delete({ where: { id } });
-  revalidateTag('posts');
+import { updateTag } from 'next/cache';
+import { redirect } from 'next/navigation';
+
+export async function createPostAction(formData: FormData) {
+  const post = await db.post.create({ data: { ... } });
+  updateTag('posts');
+  updateTag(`post-${post.id}`);
+  redirect(`/posts/${post.id}`);
 }
 ```
 
@@ -115,7 +121,7 @@ startTransition(async () => {
 });
 ```
 
-Tag queries with `cacheTag()` and match with `revalidateTag()` for fine-grained invalidation. Use `revalidatePath()` for simpler cases.
+Tag queries with `cacheTag()` (inside `'use cache'`) and invalidate with `updateTag()` (Server Actions, read-your-own-writes) or `revalidateTag()` (Route Handlers, webhooks). For React `cache()` without `'use cache'`, use `revalidateTag()` after mutations. Use `revalidatePath()` for simpler cases.
 
 ## Async React Patterns
 

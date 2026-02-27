@@ -2,16 +2,14 @@ import { cn } from '@/lib/utils';
 
 function ShowcaseWrapper({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <div className="bg-background w-full">
-      <div
-        data-slot="showcase-wrapper"
-        className={cn(
-          'mx-auto grid min-h-screen w-full max-w-5xl min-w-0 content-center items-start gap-8 p-4 pt-2 sm:gap-12 sm:p-6 md:grid-cols-2 md:gap-8 lg:p-12 2xl:max-w-6xl',
-          className,
-        )}
-        {...props}
-      />
-    </div>
+    <div
+      data-slot="showcase-wrapper"
+      className={cn(
+        'grid h-full w-full min-w-0 items-start gap-6 md:grid-cols-2 md:gap-8',
+        className,
+      )}
+      {...props}
+    />
   );
 }
 
@@ -29,7 +27,7 @@ function Showcase({
     <div
       data-slot="showcase"
       className={cn(
-        'mx-auto flex w-full max-w-lg min-w-0 flex-col gap-1 self-stretch lg:max-w-none',
+        'mx-auto flex w-full max-w-lg min-w-0 flex-col gap-1 overflow-hidden lg:max-w-none',
         containerClassName,
       )}
       {...props}
@@ -38,7 +36,7 @@ function Showcase({
       <div
         data-slot="showcase-content"
         className={cn(
-          "bg-background text-foreground flex min-w-0 flex-1 flex-col items-start gap-6 border border-dashed p-4 sm:p-6 *:[div:not([class*='w-'])]:w-full",
+          "bg-background text-foreground flex min-h-0 min-w-0 flex-1 flex-col items-start gap-4 overflow-hidden border border-dashed p-4 *:[div:not([class*='w-'])]:w-full",
           className,
         )}
       >

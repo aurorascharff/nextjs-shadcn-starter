@@ -91,16 +91,6 @@
   --code-bg: #fafafa;
   --code-border: #eaeaea;
   --code-text: #171717;
-  --sh-class: #7928ca;
-  --sh-identifier: #171717;
-  --sh-keyword: #d6336c;
-  --sh-string: #0070f3;
-  --sh-property: #0070f3;
-  --sh-entity: #7928ca;
-  --sh-tag: #d6336c;
-  --sh-literal: #d6336c;
-  --sh-sign: #525252;
-  --sh-comment: #6b7280;
 }
 
 .dark {
@@ -139,16 +129,6 @@
   --code-bg: #0a0a0a;
   --code-border: #262626;
   --code-text: #ededed;
-  --sh-class: #ff0080;
-  --sh-identifier: #fafafa;
-  --sh-keyword: #ff0080;
-  --sh-string: #50e3c2;
-  --sh-property: #0070f3;
-  --sh-entity: #7928ca;
-  --sh-tag: #ff0080;
-  --sh-literal: #ff0080;
-  --sh-sign: #888;
-  --sh-comment: #666;
 }
 
 @layer base {
