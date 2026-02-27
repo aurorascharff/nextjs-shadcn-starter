@@ -57,12 +57,12 @@ Every page folder should contain everything it needs. Components and functions l
 - **Fetching data** — Queries in `data/queries/`, wrapped with `cache()`. Await in Server Components directly, or pass the promise to a client component and unwrap with `use()`. Use SWR with `lib/fetcher.ts` for dependent or interactive client-side fetches (e.g. cascading filter options).
 - **Mutating data** — Server Actions in `data/actions/` with `"use server"`. Invalidate with `revalidateTag()`. Use `useTransition` + `useOptimistic` for pending state and instant feedback.
 - **Navigation** — Wrap route changes in `useTransition` to get `isPending` for loading UI.
-- **Caching** — Add `"use cache"` with `cacheLife()` to pages, components, or functions to include them in the static shell.
+- **Caching** — Add `"use cache"` with `cacheLife()` and `cacheTag()` to pages, components, or functions. Invalidate with `updateTag()` (Server Actions, read-your-own-writes) or `revalidateTag()` (Route Handlers, webhooks).
 - **Errors** — `error.tsx` for boundaries, `not-found.tsx` + `notFound()` for 404s. Errors thrown inside transitions automatically reach the nearest error boundary.
 
 ## Key Patterns
 
-**Cache Components:** Uses [`cacheComponents: true`](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents) to statically render server components that don't access dynamic data. Keep pages non-async and push dynamic data access into `<Suspense>` boundaries to maximize the static shell. Use [`"use cache"`](https://nextjs.org/docs/app/api-reference/directives/use-cache) with `cacheLife()` to explicitly cache additional components or functions.
+**Cache Components:** Uses [`cacheComponents: true`](https://nextjs.org/docs/app/api-reference/config/next-config-js/cacheComponents) to statically render server components that don't access dynamic data. Keep pages non-async and push dynamic data access into `<Suspense>` boundaries to maximize the static shell. Use [`"use cache"`](https://nextjs.org/docs/app/api-reference/directives/use-cache) with `cacheLife()` and `cacheTag()` to explicitly cache; invalidate with [`updateTag`](https://nextjs.org/docs/app/api-reference/functions/updateTag) (Server Actions) or [`revalidateTag`](https://nextjs.org/docs/app/api-reference/functions/revalidateTag) (Route Handlers).
 
 **Async React:** Replace manual `isLoading`/`isError` state with React 19's coordination primitives — `useTransition` for tracking async work, `useOptimistic` for instant feedback, `Suspense` for loading boundaries, and `use()` for reading promises during render. See `AGENTS.md` for detailed patterns and examples.
 

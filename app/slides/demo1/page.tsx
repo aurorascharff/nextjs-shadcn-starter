@@ -15,7 +15,7 @@ export default function Demo1Page() {
         </p>
         <TabListDemo />
       </div>
-      <SlideLink href="/slides/5">← Back to slides</SlideLink>
+      <SlideLink href="/slides/3">← Back to slides</SlideLink>
     </div>
   );
 }
