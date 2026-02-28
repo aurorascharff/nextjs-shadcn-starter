@@ -125,6 +125,8 @@ startTransition(async () => {
 
 Tag queries with `cacheTag()` (inside `'use cache'`) and invalidate with `updateTag()` (Server Actions, read-your-own-writes) or `revalidateTag()` (Route Handlers, webhooks). For React `cache()` without `'use cache'`, use `revalidateTag()` after mutations. Use `revalidatePath()` for simpler cases.
 
+**Two mechanisms (can pair, don't have to):** `cache()` from React is request-scoped deduplication. `'use cache'` and `cacheComponents` are the same underlying thing. Use what fits.
+
 ## Async React Patterns
 
 Replace manual `isLoading`/`isError` state with React 19 primitives:
