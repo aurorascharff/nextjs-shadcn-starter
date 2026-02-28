@@ -18,7 +18,7 @@ import {
 export const slides: React.ReactNode[] = [
   <Slide key="title" align="left">
     <SlideHeaderBadge>Next.js Demo Kit</SlideHeaderBadge>
-    <SlideTitle className="font-pixel">Welcome everyone. Build Demos Fast.</SlideTitle>
+    <SlideTitle className="font-pixel">Build Demos Fast</SlideTitle>
     <SlideSubtitle>
       A toolkit for interactive demos with React 19, Next.js 16, and modern patterns.
     </SlideSubtitle>
