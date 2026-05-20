@@ -141,10 +141,10 @@ export async function createPostAction(formData: FormData) {
   <Slide key="end">
     <SlideTitle className="font-pixel">Start building.</SlideTitle>
     <SlideSubtitle>
-      Clone the repo, bun install, bun run dev. Point them to Explore demo and the GitHub link.
+      Clone the repo, pnpm install, pnpm dev. Point them to Explore demo and the GitHub link.
     </SlideSubtitle>
     <SlideCode title="setup.ts">{`// git clone https://github.com/aurorascharff/nextjs-demo-kit
-// bun install && bun run dev`}</SlideCode>
+// pnpm install && pnpm dev`}</SlideCode>
     <div className="mt-6 flex items-center gap-4">
       <SlideLink href="/">Explore demo</SlideLink>
       <SlideLink href="https://github.com/aurorascharff/nextjs-demo-kit" variant="ghost">

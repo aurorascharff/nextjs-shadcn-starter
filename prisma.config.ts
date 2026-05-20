@@ -5,7 +5,7 @@ export default defineConfig({
     url: process.env.DATABASE_URL ?? 'file:./dev.db',
   },
   migrations: {
-    seed: 'bun prisma/seed.ts',
+    seed: 'tsx prisma/seed.ts',
   },
   schema: 'prisma/schema.prisma',
 });
