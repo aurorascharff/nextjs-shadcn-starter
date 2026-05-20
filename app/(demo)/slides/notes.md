@@ -23,7 +23,7 @@ This deck uses nextjs-slides. Composable primitives, ViewTransitions, keyboard n
 
 ---
 
-Start building. Clone the repo, bun install, bun run dev. Point them to Explore demo and the GitHub link.
+Start building. Clone the repo, pnpm install, pnpm dev. Point them to Explore demo and the GitHub link.
 
 ---
 

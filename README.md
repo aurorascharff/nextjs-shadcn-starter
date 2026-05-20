@@ -7,8 +7,8 @@ Uses [`cacheComponents`](https://nextjs.org/docs/app/api-reference/config/next-c
 ## Getting Started
 
 ```bash
-bun install
-bun run dev
+pnpm install
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -18,10 +18,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 This project uses SQLite with a local database file (`dev.db`). No environment configuration needed.
 
 ```bash
-bun run prisma.generate   # Generate the Prisma client
-bun run prisma.push       # Push schema to database
-bun run prisma.seed       # Seed initial data
-bun run prisma.studio     # View data in Prisma Studio
+pnpm prisma.generate   # Generate the Prisma client
+pnpm prisma.push       # Push schema to database
+pnpm prisma.seed       # Seed initial data
+pnpm prisma.studio     # View data in Prisma Studio
 ```
 
 **Using Prisma Postgres instead:** Change the provider in `prisma/schema.prisma` to `postgresql`, update `db.ts` to use `@prisma/adapter-pg`, and set your connection string in `.env`:
@@ -46,7 +46,7 @@ lib/
   fetcher.ts              # Shared SWR fetcher
 ```
 
-- **components/ui** — [shadcn/ui](https://ui.shadcn.com/) components. Add with `bunx shadcn@latest add <component-name>`
+- **components/ui** — [shadcn/ui](https://ui.shadcn.com/) components. Add with `pnpm dlx shadcn@latest add <component-name>`
 - **components/design** — Components that expose [Action props](https://react.dev/reference/react/useTransition#exposing-action-props-from-components) and handle async coordination internally
   Every page folder should contain everything it needs. Components and functions live at the nearest shared space in the hierarchy.
 
@@ -73,7 +73,7 @@ Uses [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) with for
 ## Deployment
 
 ```bash
-bun run build
+pnpm build
 ```
 
 Deploy to [Vercel](https://vercel.com) for the easiest experience. Use a production database instead of SQLite.
